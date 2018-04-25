@@ -1,0 +1,8 @@
+.DS_Store
+src/meconcashd
+src/mmcoind
+.vscode/
+*.qm
+*.pro.user
+/debug
+/release
