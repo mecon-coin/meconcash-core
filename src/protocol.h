@@ -15,7 +15,7 @@
 #include <string>
 #include "uint256.h"
 
-#define MMCOIN_PORT  29901
+#define MECASH_PORT  29901
 #define RPC_PORT     29902
 #define TESTNET_PORT 29903
 #define TESTNET_RPC_PORT 29904
@@ -27,7 +27,7 @@ void GetMessageStart(unsigned char pchMessageStart[], bool fPersistent = false);
 
 static inline unsigned short GetDefaultPort(const bool testnet = fTestNet)
 {
-    return testnet ? TESTNET_PORT : MMCOIN_PORT;
+    return testnet ? TESTNET_PORT : MECASH_PORT;
 }
 
 

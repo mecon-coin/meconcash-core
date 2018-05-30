@@ -195,7 +195,7 @@ BOOST_AUTO_TEST_CASE(util_FormatMoney)
     BOOST_CHECK_EQUAL(FormatMoney(COIN/100000, false), "0.00001");
     BOOST_CHECK_EQUAL(FormatMoney(COIN/1000000, false), "0.000001");
 
-// mmcoin: COIN = 1000000, cannot format money smaller than one satoshi
+// mecash: COIN = 1000000, cannot format money smaller than one satoshi
     BOOST_CHECK_NE(FormatMoney(COIN/10000000, false), "0.0000001");
     BOOST_CHECK_NE(FormatMoney(COIN/100000000, false), "0.00000001");
 }
@@ -240,7 +240,7 @@ BOOST_AUTO_TEST_CASE(util_ParseMoney)
     BOOST_CHECK(ParseMoney("0.000001", ret));
     BOOST_CHECK_EQUAL(ret, COIN/1000000);
 
-// mmcoin: COIN = 1000000, cannot parse money smaller than one satoshi
+// mecash: COIN = 1000000, cannot parse money smaller than one satoshi
     BOOST_CHECK(!ParseMoney("0.0000001", ret));
     BOOST_CHECK(!ParseMoney("0.00000001", ret));
 

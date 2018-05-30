@@ -120,7 +120,7 @@ obj/%.o: %.cpp $(HEADERS)
 
 meconcashd.exe: $(OBJS:obj/%=obj/%)
 	$(CXX) $(xCXXFLAGS) $(xLDFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
-	@cp $@ mmcoind.exe
+	@cp $@ mecashd.exe
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
 
@@ -134,7 +134,7 @@ test_bitcoin.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 clean:
 	-rm -f obj/*.o
 	-rm -f meconcashd.exe
-	-rm -f mmcoind.exe
+	-rm -f mecashd.exe
 	-rm -f obj-test/*.o
 	-rm -f test_bitcoin.exe
 	-rm -f obj/build.h

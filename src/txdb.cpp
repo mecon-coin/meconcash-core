@@ -222,7 +222,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
                 pindexNew->nStatus        = diskindex.nStatus;
                 pindexNew->nTx            = diskindex.nTx;
 
-                // mmcoin related block index fields
+                // mecash related block index fields
                 pindexNew->nMint          = diskindex.nMint;
                 pindexNew->nMoneySupply   = diskindex.nMoneySupply;
                 pindexNew->nFlags         = diskindex.nFlags;
@@ -238,7 +238,7 @@ bool CBlockTreeDB::LoadBlockIndexGuts()
                 if (!pindexNew->CheckIndex())
                     return error("LoadBlockIndex() : CheckIndex failed: %s", pindexNew->ToString().c_str());
 
-                // mmcoin: build setStakeSeen
+                // mecash: build setStakeSeen
                 if (pindexNew->IsProofOfStake())
                     setStakeSeen.insert(make_pair(pindexNew->prevoutStake, pindexNew->nStakeTime));
 

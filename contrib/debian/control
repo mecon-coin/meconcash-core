@@ -1,6 +1,8 @@
 Source: meconcash
 Section: utils
 Priority: optional
+Maintainer: Peerchemist <peerchemist@protonmail.ch>
+Uploaders: Peerchemist <peerchemist@protonmail.ch>
 Build-Depends: debhelper,
  devscripts,
  automake,
@@ -13,6 +15,7 @@ Build-Depends: debhelper,
  perl,
  perl-modules,
  libevent-dev,
+ python,
  libboost-system1.54-dev | libboost-system-dev (>> 1.47),
  libboost-filesystem1.54-dev | libboost-filesystem-dev (>> 1.47),
  libboost-program-options1.54-dev | libboost-program-options-dev (>> 1.47),
@@ -24,7 +27,7 @@ Build-Depends: debhelper,
  qttools5-dev-tools, qttools5-dev,
  libqrencode-dev
 Standards-Version: 3.9.5
-Homepage: https://meconcash.net/
+Homepage: https://meconcash.io/
 Vcs-Git: git://github.com/meconcash/meconcash.git
 Vcs-Browser: https://github.com/meconcash/meconcash
 

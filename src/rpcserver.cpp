@@ -124,7 +124,7 @@ std::string HexBits(unsigned int nBits)
 /// Note: This interface may still be subject to change.
 ///
 
-// mmcoin: remove transaction from mempool
+// mecash: remove transaction from mempool
 Value removetransaction(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
@@ -144,7 +144,7 @@ Value removetransaction(const Array& params, bool fHelp)
     return tx.GetHash().GetHex();
 }
 
-// mmcoin: reserve balance from being staked for network protection
+// mecash: reserve balance from being staked for network protection
 Value reservebalance(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 2)
@@ -186,7 +186,7 @@ Value reservebalance(const Array& params, bool fHelp)
 }
 
 
-// mmcoin: check wallet integrity
+// mecash: check wallet integrity
 Value checkwallet(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 0)
@@ -209,7 +209,7 @@ Value checkwallet(const Array& params, bool fHelp)
 }
 
 
-// mmcoin: repair wallet
+// mecash: repair wallet
 Value repairwallet(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 0)

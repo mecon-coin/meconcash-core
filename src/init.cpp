@@ -192,7 +192,7 @@ std::string HelpMessage(HelpMessageMode hmm)
         "  -bind=<addr>           " + _("Bind to given address and always listen on it. Use [host]:port notation for IPv6") + "\n" +
         "  -dnsseed               " + _("Find peers using DNS lookup (default: 1 unless -connect)") + "\n" +
         "  -banscore=<n>          " + _("Threshold for disconnecting misbehaving peers (default: 100)") + "\n" +
-        "  -bantime=<n>           " + _("Number of seconds to keep misbehaving peers from reconnecting (default: 96400)") + "\n" +
+        "  -bantime=<n>           " + _("Number of seconds to keep misbehaving peers from reconnecting (default: 86400)") + "\n" +
         "  -maxreceivebuffer=<n>  " + _("Maximum per-connection receive buffer, <n>*1000 bytes (default: 5000)") + "\n" +
         "  -maxsendbuffer=<n>     " + _("Maximum per-connection send buffer, <n>*1000 bytes (default: 1000)") + "\n" +
 
@@ -493,7 +493,7 @@ bool AppInit2(boost::thread_group& threadGroup)
     // 1-satoshi-fee transactions. It should be set above the real
     // cost to you of processing a transaction.
     //
-    // mmcoin: -mintxfee and -minrelaytxfee options of bitcoin disabled
+    // mecash: -mintxfee and -minrelaytxfee options of bitcoin disabled
     // fixed min fees defined in MIN_TX_FEE and MIN_RELAY_TX_FEE
 
     if (mapArgs.count("-paytxfee"))
@@ -504,7 +504,7 @@ bool AppInit2(boost::thread_group& threadGroup)
             InitWarning(_("Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction."));
     }
 
-    if (mapArgs.count("-checkpointkey")) // mmcoin: checkpoint master priv key
+    if (mapArgs.count("-checkpointkey")) // mecash: checkpoint master priv key
     {
         if (!SetCheckpointPrivKey(GetArg("-checkpointkey", "")))
             return InitError(_("Unable to sign checkpoint, wrong checkpointkey?"));
@@ -1002,7 +1002,7 @@ bool AppInit2(boost::thread_group& threadGroup)
     GenerateBitcoins(GetBoolArg("-gen", false), pwalletMain);
 #endif // DISABLE_MINING
 
-    // mmcoin: mint proof-of-stake blocks in the background
+    // mecash: mint proof-of-stake blocks in the background
 #ifndef DISABLE_MINING
 #ifdef TESTING
     if (GetBoolArg("-stakegen", true))

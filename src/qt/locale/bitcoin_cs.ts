@@ -4,13 +4,13 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About Meconcash</source>
-        <translation>O Meconcashu</translation>
+        <source>About Peercoin</source>
+        <translation>O Peercoinu</translation>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;Meconcash&lt;/b&gt; version</source>
-        <translation>&lt;b&gt;Meconcash&lt;/b&gt; verze</translation>
+        <source>&lt;b&gt;Peercoin&lt;/b&gt; version</source>
+        <translation>&lt;b&gt;Peercoin&lt;/b&gt; verze</translation>
     </message>
     <message>
         <location line="+57"/>
@@ -34,8 +34,8 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location line="+0"/>
-        <source>The Meconcash developers</source>
-        <translation>Vývojáři Meconcashu</translation>
+        <source>The Peercoin developers</source>
+        <translation>Vývojáři Peercoinu</translation>
     </message>
 </context>
 <context>
@@ -67,8 +67,8 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location filename="../addressbookpage.cpp" line="+63"/>
-        <source>These are your Meconcash addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>Tohle jsou tvé Meconcashové adresy pro příjem plateb. Můžeš dát pokaždé každému plátci novou adresu, abys věděl, kdo ti kdy kolik platil.</translation>
+        <source>These are your Peercoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <translation>Tohle jsou tvé Peercoinové adresy pro příjem plateb. Můžeš dát pokaždé každému plátci novou adresu, abys věděl, kdo ti kdy kolik platil.</translation>
     </message>
     <message>
         <location filename="../forms/addressbookpage.ui" line="+14"/>
@@ -82,8 +82,8 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location line="+11"/>
-        <source>Sign a message to prove you own a Meconcash address</source>
-        <translation>Podepiš zprávu, čímž prokážeš, že jsi vlastníkem Meconcashové adresy</translation>
+        <source>Sign a message to prove you own a Peercoin address</source>
+        <translation>Podepiš zprávu, čímž prokážeš, že jsi vlastníkem Peercoinové adresy</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -107,8 +107,8 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location line="-44"/>
-        <source>Verify a message to ensure it was signed with a specified Meconcash address</source>
-        <translation>Ověř zprávu, aby ses ujistil, že byla podepsána danou Meconcashovou adresou</translation>
+        <source>Verify a message to ensure it was signed with a specified Peercoin address</source>
+        <translation>Ověř zprávu, aby ses ujistil, že byla podepsána danou Peercoinovou adresou</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -122,8 +122,8 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location filename="../addressbookpage.cpp" line="-5"/>
-        <source>These are your Meconcash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Tohle jsou tvé Meconcashové adresy pro posílání plateb. Před odesláním mincí si vždy zkontroluj částku a cílovou adresu.</translation>
+        <source>These are your Peercoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Tohle jsou tvé Peercoinové adresy pro posílání plateb. Před odesláním mincí si vždy zkontroluj částku a cílovou adresu.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -248,8 +248,8 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location line="+1"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR MECONCASHS&lt;/b&gt;!</source>
-        <translation>Varování: Pokud si zašifruješ peněženku a ztratíš či zapomeneš heslo, &lt;b&gt;PŘIJDEŠ O VŠECHNY MECONCASHY&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PEERCOINS&lt;/b&gt;!</source>
+        <translation>Varování: Pokud si zašifruješ peněženku a ztratíš či zapomeneš heslo, &lt;b&gt;PŘIJDEŠ O VŠECHNY PEERCOINY&lt;/b&gt;!</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -275,8 +275,8 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location line="-56"/>
-        <source>Meconcash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your meconcashs from being stolen by malware infecting your computer.</source>
-        <translation>Meconcash se teď ukončí, aby dokončil zašifrování. Pamatuj však, že pouhé zašifrování peněženky úplně nezabraňuje krádeži tvých meconcashů malwarem, kterým se může počítač nakazit.</translation>
+        <source>Peercoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your peercoins from being stolen by malware infecting your computer.</source>
+        <translation>Peercoin se teď ukončí, aby dokončil zašifrování. Pamatuj však, že pouhé zašifrování peněženky úplně nezabraňuje krádeži tvých peercoinů malwarem, kterým se může počítač nakazit.</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -374,8 +374,8 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location line="+4"/>
-        <source>Show information about Meconcash</source>
-        <translation>Zobraz informace o Meconcashu</translation>
+        <source>Show information about Peercoin</source>
+        <translation>Zobraz informace o Peercoinu</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -419,13 +419,13 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location line="-347"/>
-        <source>Send coins to a Meconcash address</source>
-        <translation>Pošli mince na Meconcashovou adresu</translation>
+        <source>Send coins to a Peercoin address</source>
+        <translation>Pošli mince na Peercoinovou adresu</translation>
     </message>
     <message>
         <location line="+49"/>
-        <source>Modify configuration options for Meconcash</source>
-        <translation>Uprav nastavení Meconcashu</translation>
+        <source>Modify configuration options for Peercoin</source>
+        <translation>Uprav nastavení Peercoinu</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -455,8 +455,8 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     <message>
         <location line="-165"/>
         <location line="+530"/>
-        <source>Meconcash</source>
-        <translation>Meconcash</translation>
+        <source>Peercoin</source>
+        <translation>Peercoin</translation>
     </message>
     <message>
         <location line="-530"/>
@@ -480,8 +480,8 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location line="+22"/>
-        <source>&amp;About Meconcash</source>
-        <translation>O &amp;Meconcashu</translation>
+        <source>&amp;About Peercoin</source>
+        <translation>O &amp;Peercoinu</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -500,13 +500,13 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location line="+7"/>
-        <source>Sign messages with your Meconcash addresses to prove you own them</source>
-        <translation>Podepiš zprávy svými Meconcashovými adresami, čímž prokážeš, že jsi jejich vlastníkem</translation>
+        <source>Sign messages with your Peercoin addresses to prove you own them</source>
+        <translation>Podepiš zprávy svými Peercoinovými adresami, čímž prokážeš, že jsi jejich vlastníkem</translation>
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified Meconcash addresses</source>
-        <translation>Ověř zprávy, aby ses ujistil, že byly podepsány danými Meconcashovými adresami</translation>
+        <source>Verify messages to ensure they were signed with specified Peercoin addresses</source>
+        <translation>Ověř zprávy, aby ses ujistil, že byly podepsány danými Peercoinovými adresami</translation>
     </message>
     <message>
         <location line="+28"/>
@@ -536,13 +536,13 @@ Tento produkt zahrnuje programy vyvinuté OpenSSL Projektem pro použití v Open
     </message>
     <message>
         <location line="+47"/>
-        <source>Meconcash client</source>
-        <translation>Meconcash klient</translation>
+        <source>Peercoin client</source>
+        <translation>Peercoin klient</translation>
     </message>
     <message numerus="yes">
         <location line="+141"/>
-        <source>%n active connection(s) to Meconcash network</source>
-        <translation><numerusform>%n aktivní spojení do Meconcashové sítě</numerusform><numerusform>%n aktivní spojení do Meconcashové sítě</numerusform><numerusform>%n aktivních spojení do Meconcashové sítě</numerusform></translation>
+        <source>%n active connection(s) to Peercoin network</source>
+        <translation><numerusform>%n aktivní spojení do Peercoinové sítě</numerusform><numerusform>%n aktivní spojení do Peercoinové sítě</numerusform><numerusform>%n aktivních spojení do Peercoinové sítě</numerusform></translation>
     </message>
     <message>
         <location line="+22"/>
@@ -656,8 +656,8 @@ Adresa: %4
     <message>
         <location line="-23"/>
         <location line="+23"/>
-        <source>URI can not be parsed! This can be caused by an invalid Meconcash address or malformed URI parameters.</source>
-        <translation>Nepodařilo se analyzovat URI! Důvodem může být neplatná Meconcashová adresa nebo poškozené parametry URI.</translation>
+        <source>URI can not be parsed! This can be caused by an invalid Peercoin address or malformed URI parameters.</source>
+        <translation>Nepodařilo se analyzovat URI! Důvodem může být neplatná Peercoinová adresa nebo poškozené parametry URI.</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -671,8 +671,8 @@ Adresa: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+111"/>
-        <source>A fatal error occurred. Meconcash can no longer continue safely and will quit.</source>
-        <translation>Stala se fatální chyba. Meconcash nemůže bezpečně pokračovat v činnosti, a proto skončí.</translation>
+        <source>A fatal error occurred. Peercoin can no longer continue safely and will quit.</source>
+        <translation>Stala se fatální chyba. Peercoin nemůže bezpečně pokračovat v činnosti, a proto skončí.</translation>
     </message>
 </context>
 <context>
@@ -737,8 +737,8 @@ Adresa: %4
     </message>
     <message>
         <location line="-5"/>
-        <source>The entered address &quot;%1&quot; is not a valid Meconcash address.</source>
-        <translation>Zadaná adresa &quot;%1&quot; není platná Meconcashová adresa.</translation>
+        <source>The entered address &quot;%1&quot; is not a valid Peercoin address.</source>
+        <translation>Zadaná adresa &quot;%1&quot; není platná Peercoinová adresa.</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -756,8 +756,8 @@ Adresa: %4
     <message>
         <location filename="../guiutil.cpp" line="+424"/>
         <location line="+12"/>
-        <source>Meconcash-Qt</source>
-        <translation>Meconcash-Qt</translation>
+        <source>Peercoin-Qt</source>
+        <translation>Peercoin-Qt</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -809,7 +809,7 @@ Adresa: %4
     </message>
     <message>
         <location line="+6"/>
-        <source>Mandatory network transaction fee per kB transferred. Most transactions are 1 kB and incur a 0.01 MCH fee. Note: transfer size may increase depending on the number of input transactions required to be added together to fund the payment.</source>
+        <source>Mandatory network transaction fee per kB transferred. Most transactions are 1 kB and incur a 0.01 PPC fee. Note: transfer size may increase depending on the number of input transactions required to be added together to fund the payment.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -819,8 +819,8 @@ Adresa: %4
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start Meconcash after logging in to the system.</source>
-        <translation>Automaticky spustí Meconcash po přihlášení do systému.</translation>
+        <source>Automatically start Peercoin after logging in to the system.</source>
+        <translation>Automaticky spustí Peercoin po přihlášení do systému.</translation>
     </message>
     <message>
         <location line="+46"/>
@@ -829,8 +829,8 @@ Adresa: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start Meconcash on system login</source>
-        <translation>S&amp;pustit Meconcash po přihlášení do systému</translation>
+        <source>&amp;Start Peercoin on system login</source>
+        <translation>S&amp;pustit Peercoin po přihlášení do systému</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -854,7 +854,7 @@ Adresa: %4
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the Meconcash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the Peercoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation>Automaticky otevře potřebný port na routeru. Tohle funguje jen za předpokladu, že tvůj router podporuje UPnP a že je UPnP povolené.</translation>
     </message>
     <message>
@@ -864,8 +864,8 @@ Adresa: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the Meconcash network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation>Připojí se do Meconcashové sítě přes SOCKS proxy (např. když se připojuje přes Tor).</translation>
+        <source>Connect to the Peercoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <translation>Připojí se do Peercoinové sítě přes SOCKS proxy (např. když se připojuje přes Tor).</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -939,8 +939,8 @@ Adresa: %4
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting Meconcash.</source>
-        <translation>Tady lze nastavit jazyk uživatelského rozhraní. Nastavení se projeví až po restartování Meconcashu.</translation>
+        <source>The user interface language can be set here. This setting will take effect after restarting Peercoin.</source>
+        <translation>Tady lze nastavit jazyk uživatelského rozhraní. Nastavení se projeví až po restartování Peercoinu.</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -954,8 +954,8 @@ Adresa: %4
     </message>
     <message>
         <location line="+9"/>
-        <source>Whether to show Meconcash addresses in the transaction list or not.</source>
-        <translation>Zda ukazovat meconcashové adresy ve výpisu transakcí nebo ne.</translation>
+        <source>Whether to show Peercoin addresses in the transaction list or not.</source>
+        <translation>Zda ukazovat peercoinové adresy ve výpisu transakcí nebo ne.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1006,8 +1006,8 @@ Adresa: %4
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting Meconcash.</source>
-        <translation>Nastavení se projeví až po restartování Meconcashu.</translation>
+        <source>This setting will take effect after restarting Peercoin.</source>
+        <translation>Nastavení se projeví až po restartování Peercoinu.</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -1025,8 +1025,8 @@ Adresa: %4
     <message>
         <location line="+50"/>
         <location line="+166"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Meconcash network after a connection is established, but this process has not completed yet.</source>
-        <translation>Zobrazené informace nemusí být aktuální. Tvá peněženka se automaticky sesynchronizuje s Meconcashovou sítí, jakmile se s ní spojí. Zatím ale ještě není synchronizace dokončena.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Peercoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Zobrazené informace nemusí být aktuální. Tvá peněženka se automaticky sesynchronizuje s Peercoinovou sítí, jakmile se s ní spojí. Zatím ale ještě není synchronizace dokončena.</translation>
     </message>
     <message>
         <location line="-124"/>
@@ -1079,8 +1079,8 @@ Adresa: %4
     <name>PaymentServer</name>
     <message>
         <location filename="../paymentserver.cpp" line="+107"/>
-        <source>Cannot start meconcash: click-to-pay handler</source>
-        <translation>Nemůžu spustit meconcash: obsluha click-to-pay</translation>
+        <source>Cannot start peercoin: click-to-pay handler</source>
+        <translation>Nemůžu spustit peercoin: obsluha click-to-pay</translation>
     </message>
 </context>
 <context>
@@ -1229,8 +1229,8 @@ Adresa: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the Meconcash-Qt help message to get a list with possible Meconcash command-line options.</source>
-        <translation>Seznam parametrů Meconcashu pro příkazovou řádku získáš v nápovědě Meconcashu Qt.</translation>
+        <source>Show the Peercoin-Qt help message to get a list with possible Peercoin command-line options.</source>
+        <translation>Seznam parametrů Peercoinu pro příkazovou řádku získáš v nápovědě Peercoinu Qt.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1249,13 +1249,13 @@ Adresa: %4
     </message>
     <message>
         <location line="-104"/>
-        <source>Meconcash - Debug window</source>
-        <translation>Meconcash - ladicí okno</translation>
+        <source>Peercoin - Debug window</source>
+        <translation>Peercoin - ladicí okno</translation>
     </message>
     <message>
         <location line="+25"/>
-        <source>Meconcash Core</source>
-        <translation>Jádro Meconcashu</translation>
+        <source>Peercoin Core</source>
+        <translation>Jádro Peercoinu</translation>
     </message>
     <message>
         <location line="+279"/>
@@ -1264,8 +1264,8 @@ Adresa: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Open the Meconcash debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Otevři soubor s ladicími záznamy Meconcashu z aktuálního datového adresáře. U velkých logů to může pár vteřin zabrat.</translation>
+        <source>Open the Peercoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Otevři soubor s ladicími záznamy Peercoinu z aktuálního datového adresáře. U velkých logů to může pár vteřin zabrat.</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -1274,8 +1274,8 @@ Adresa: %4
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-30"/>
-        <source>Welcome to the Meconcash RPC console.</source>
-        <translation>Vítej v Meconcashové RPC konzoli.</translation>
+        <source>Welcome to the Peercoin RPC console.</source>
+        <translation>Vítej v Peercoinové RPC konzoli.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1458,8 +1458,8 @@ Adresa: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a Meconcash address</source>
-        <translation>Zadej Meconcashovou adresu</translation>
+        <source>Enter a Peercoin address</source>
+        <translation>Zadej Peercoinovou adresu</translation>
     </message>
 </context>
 <context>
@@ -1523,8 +1523,8 @@ Adresa: %4
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this Meconcash address</source>
-        <translation>Podepiš zprávu, čímž prokážeš, že jsi vlastníkem této Meconcashové adresy</translation>
+        <source>Sign the message to prove you own this Peercoin address</source>
+        <translation>Podepiš zprávu, čímž prokážeš, že jsi vlastníkem této Peercoinové adresy</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1559,8 +1559,8 @@ Adresa: %4
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified Meconcash address</source>
-        <translation>Ověř zprávu, aby ses ujistil, že byla podepsána danou Meconcashovou adresou</translation>
+        <source>Verify the message to ensure it was signed with the specified Peercoin address</source>
+        <translation>Ověř zprávu, aby ses ujistil, že byla podepsána danou Peercoinovou adresou</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1575,8 +1575,8 @@ Adresa: %4
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a Meconcash address</source>
-        <translation>Zadej Meconcashovou adresu (např. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
+        <source>Enter a Peercoin address</source>
+        <translation>Zadej Peercoinovou adresu (např. 1NS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)</translation>
     </message>
     <message>
         <location line="-2"/>
@@ -1585,8 +1585,8 @@ Adresa: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter Meconcash signature</source>
-        <translation>Vlož Meconcashový podpis</translation>
+        <source>Enter Peercoin signature</source>
+        <translation>Vlož Peercoinový podpis</translation>
     </message>
     <message>
         <location line="+82"/>
@@ -1659,8 +1659,8 @@ Adresa: %4
     <name>SplashScreen</name>
     <message>
         <location filename="../splashscreen.cpp" line="+22"/>
-        <source>The Meconcash developers</source>
-        <translation>Vývojáři Meconcashu</translation>
+        <source>The Peercoin developers</source>
+        <translation>Vývojáři Peercoinu</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2194,11 +2194,11 @@ Adresa: %4
     </message>
 </context>
 <context>
-    <name>Meconcash-core</name>
+    <name>Peercoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+94"/>
-        <source>Meconcash version</source>
-        <translation>Verze Meconcashu</translation>
+        <source>Peercoin version</source>
+        <translation>Verze Peercoinu</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -2207,8 +2207,8 @@ Adresa: %4
     </message>
     <message>
         <location line="-29"/>
-        <source>Send command to -server or meconcashd</source>
-        <translation>Poslat příkaz pro -server nebo meconcashd</translation>
+        <source>Send command to -server or peercoind</source>
+        <translation>Poslat příkaz pro -server nebo peercoind</translation>
     </message>
     <message>
         <location line="-23"/>
@@ -2227,13 +2227,13 @@ Adresa: %4
     </message>
     <message>
         <location line="+24"/>
-        <source>Specify configuration file (default: meconcash.conf)</source>
-        <translation>Konfigurační soubor (výchozí: meconcash.conf)</translation>
+        <source>Specify configuration file (default: peercoin.conf)</source>
+        <translation>Konfigurační soubor (výchozí: peercoin.conf)</translation>
     </message>
     <message>
         <location line="+3"/>
-        <source>Specify pid file (default: meconcashd.pid)</source>
-        <translation>PID soubor (výchozí: meconcashd.pid)</translation>
+        <source>Specify pid file (default: peercoind.pid)</source>
+        <translation>PID soubor (výchozí: peercoind.pid)</translation>
     </message>
     <message>
         <location line="-1"/>
@@ -2272,8 +2272,8 @@ Adresa: %4
     </message>
     <message>
         <location line="-134"/>
-        <source>Number of seconds to keep misbehaving peers from reconnecting (default: 96400)</source>
-        <translation>Doba ve vteřinách, po kterou se nebudou moci zlobivé uzly znovu připojit (výchozí: 96400)</translation>
+        <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
+        <translation>Doba ve vteřinách, po kterou se nebudou moci zlobivé uzly znovu připojit (výchozí: 86400)</translation>
     </message>
     <message>
         <location line="-29"/>
@@ -2282,8 +2282,8 @@ Adresa: %4
     </message>
     <message>
         <location line="+27"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 18332 or testnet: 28332)</source>
-        <translation>Čekat na JSON RPC spojení na &lt;portu&gt; (výchozí: 18332 nebo testnet: 28332)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8332 or testnet: 18332)</source>
+        <translation>Čekat na JSON RPC spojení na &lt;portu&gt; (výchozí: 8332 nebo testnet: 18332)</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -2310,24 +2310,24 @@ Adresa: %4
         <source>%s, you must set a rpcpassword in the configuration file:
 %s
 It is recommended you use the following random password:
-rpcuser=meconcashrpc
+rpcuser=peercoinrpc
 rpcpassword=%s
 (you do not need to remember this password)
 The username and password MUST NOT be the same.
 If the file does not exist, create it with owner-readable-only file permissions.
 It is also recommended to set alertnotify so you are notified of problems;
-for example: alertnotify=echo %%s | mail -s &quot;Meconcash Alert&quot; admin@foo.com
+for example: alertnotify=echo %%s | mail -s &quot;Peercoin Alert&quot; admin@foo.com
 </source>
         <translation>%s, musíš nastavit rpcpassword v konfiguračním souboru:
 %s
 Je vhodné použít následující náhodné heslo:
-rpcuser=meconcashrpc
+rpcuser=peercoinrpc
 rpcpassword=%s
 (není potřeba si ho pamatovat)
 rpcuser a rpcpassword NESMÍ být stejné.
 Pokud konfigurační soubor ještě neexistuje, vytvoř ho tak, aby ho mohl číst pouze vlastník.
 Je také doporučeno si nastavit alertnotify, abys byl upozorněn na případné problémy;
-například: alertnotify=echo %%s | mail -s &quot;Meconcash Alert&quot; admin@foo.com
+například: alertnotify=echo %%s | mail -s &quot;Peercoin Alert&quot; admin@foo.com
 </translation>
     </message>
     <message>
@@ -2342,8 +2342,8 @@ například: alertnotify=echo %%s | mail -s &quot;Meconcash Alert&quot; admin@fo
     </message>
     <message>
         <location line="+3"/>
-        <source>Cannot obtain a lock on data directory %s. Meconcash is probably already running.</source>
-        <translation>Nedaří se mi získat zámek na datový adresář %s. Meconcash pravděpodobně už jednou běží.</translation>
+        <source>Cannot obtain a lock on data directory %s. Peercoin is probably already running.</source>
+        <translation>Nedaří se mi získat zámek na datový adresář %s. Peercoin pravděpodobně už jednou běží.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2387,8 +2387,8 @@ například: alertnotify=echo %%s | mail -s &quot;Meconcash Alert&quot; admin@fo
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Meconcash will not work properly.</source>
-        <translation>Upozornění: Zkontroluj, že máš v počítači správně nastavený datum a čas! Pokud jsou nastaveny špatně, Meconcash nebude fungovat správně.</translation>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Peercoin will not work properly.</source>
+        <translation>Upozornění: Zkontroluj, že máš v počítači správně nastavený datum a čas! Pokud jsou nastaveny špatně, Peercoin nebude fungovat správně.</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2827,13 +2827,13 @@ například: alertnotify=echo %%s | mail -s &quot;Meconcash Alert&quot; admin@fo
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of Meconcash</source>
-        <translation>Chyba při načítání wallet.dat: peněženka vyžaduje novější verzi Meconcashu</translation>
+        <source>Error loading wallet.dat: Wallet requires newer version of Peercoin</source>
+        <translation>Chyba při načítání wallet.dat: peněženka vyžaduje novější verzi Peercoinu</translation>
     </message>
     <message>
         <location line="+93"/>
-        <source>Wallet needed to be rewritten: restart Meconcash to complete</source>
-        <translation>Soubor s peněženkou potřeboval přepsat: restartuj Meconcash, aby se operace dokončila</translation>
+        <source>Wallet needed to be rewritten: restart Peercoin to complete</source>
+        <translation>Soubor s peněženkou potřeboval přepsat: restartuj Peercoin, aby se operace dokončila</translation>
     </message>
     <message>
         <location line="-95"/>
@@ -2892,8 +2892,8 @@ například: alertnotify=echo %%s | mail -s &quot;Meconcash Alert&quot; admin@fo
     </message>
     <message>
         <location line="-25"/>
-        <source>Unable to bind to %s on this computer. Meconcash is probably already running.</source>
-        <translation>Nedaří se mi připojit na %s na tomhle počítači. Meconcash už pravděpodobně jednou běží.</translation>
+        <source>Unable to bind to %s on this computer. Peercoin is probably already running.</source>
+        <translation>Nedaří se mi připojit na %s na tomhle počítači. Peercoin už pravděpodobně jednou běží.</translation>
     </message>
     <message>
         <location line="+64"/>

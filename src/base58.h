@@ -251,7 +251,7 @@ public:
 };
 
 /** base58-encoded bitcoin addresses.
- * mmcoin public-key-hash-addresses have version 55 (or 111 testnet).
+ * mecash public-key-hash-addresses have version 55 (or 111 testnet).
  * The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
  * Script-hash-addresses have version 117 (or 196 testnet).
  * The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
@@ -273,8 +273,8 @@ class CBitcoinAddress : public CBase58Data
 public:
     enum
     {
-        PUBKEY_ADDRESS = 50,  // mmcoin: addresses begin with 'M'
-        SCRIPT_ADDRESS = 110, // mmcoin: addresses begin with 'm'
+        PUBKEY_ADDRESS = 50,  // mecash: addresses begin with 'M'
+        SCRIPT_ADDRESS = 110, // mecash: addresses begin with 'm'
         PUBKEY_ADDRESS_TEST = 111,
         SCRIPT_ADDRESS_TEST = 196,
     };

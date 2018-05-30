@@ -4,13 +4,13 @@
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
-        <source>About Meconcash</source>
+        <source>About Peercoin</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location line="+39"/>
-        <source>&lt;b&gt;Meconcash&lt;/b&gt; version</source>
-        <translation>&lt;b&gt;Meconcash&lt;/b&gt; weergawe</translation>
+        <source>&lt;b&gt;Peercoin&lt;/b&gt; version</source>
+        <translation>&lt;b&gt;Peercoin&lt;/b&gt; weergawe</translation>
     </message>
     <message>
         <location line="+57"/>
@@ -29,7 +29,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+0"/>
-        <source>The Meconcash developers</source>
+        <source>The Peercoin developers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -62,7 +62,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location filename="../addressbookpage.cpp" line="+63"/>
-        <source>These are your Meconcash addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
+        <source>These are your Peercoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -77,7 +77,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+11"/>
-        <source>Sign a message to prove you own a Meconcash address</source>
+        <source>Sign a message to prove you own a Peercoin address</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -102,7 +102,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-44"/>
-        <source>Verify a message to ensure it was signed with a specified Meconcash address</source>
+        <source>Verify a message to ensure it was signed with a specified Peercoin address</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -117,7 +117,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location filename="../addressbookpage.cpp" line="-5"/>
-        <source>These are your Meconcash addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your Peercoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -243,7 +243,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+1"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR MECONCASHS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR PEERCOINS&lt;/b&gt;!</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -270,7 +270,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-56"/>
-        <source>Meconcash will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your meconcashs from being stolen by malware infecting your computer.</source>
+        <source>Peercoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your peercoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -369,8 +369,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+4"/>
-        <source>Show information about Meconcash</source>
-        <translation>Wys inligting oor Meconcash</translation>
+        <source>Show information about Peercoin</source>
+        <translation>Wys inligting oor Peercoin</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -414,12 +414,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-347"/>
-        <source>Send coins to a Meconcash address</source>
+        <source>Send coins to a Peercoin address</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location line="+49"/>
-        <source>Modify configuration options for Meconcash</source>
+        <source>Modify configuration options for Peercoin</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -450,8 +450,8 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-165"/>
         <location line="+530"/>
-        <source>Meconcash</source>
-        <translation>Meconcash</translation>
+        <source>Peercoin</source>
+        <translation>Peercoin</translation>
     </message>
     <message>
         <location line="-530"/>
@@ -475,7 +475,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+22"/>
-        <source>&amp;About Meconcash</source>
+        <source>&amp;About Peercoin</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -495,12 +495,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+7"/>
-        <source>Sign messages with your Meconcash addresses to prove you own them</source>
+        <source>Sign messages with your Peercoin addresses to prove you own them</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
-        <source>Verify messages to ensure they were signed with specified Meconcash addresses</source>
+        <source>Verify messages to ensure they were signed with specified Peercoin addresses</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -531,12 +531,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+47"/>
-        <source>Meconcash client</source>
+        <source>Peercoin client</source>
         <translation type="unfinished"/>
     </message>
     <message numerus="yes">
         <location line="+141"/>
-        <source>%n active connection(s) to Meconcash network</source>
+        <source>%n active connection(s) to Peercoin network</source>
         <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
@@ -647,7 +647,7 @@ Address: %4
     <message>
         <location line="-23"/>
         <location line="+23"/>
-        <source>URI can not be parsed! This can be caused by an invalid Meconcash address or malformed URI parameters.</source>
+        <source>URI can not be parsed! This can be caused by an invalid Peercoin address or malformed URI parameters.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -662,7 +662,7 @@ Address: %4
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+111"/>
-        <source>A fatal error occurred. Meconcash can no longer continue safely and will quit.</source>
+        <source>A fatal error occurred. Peercoin can no longer continue safely and will quit.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -728,7 +728,7 @@ Address: %4
     </message>
     <message>
         <location line="-5"/>
-        <source>The entered address &quot;%1&quot; is not a valid Meconcash address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid Peercoin address.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -747,7 +747,7 @@ Address: %4
     <message>
         <location filename="../guiutil.cpp" line="+424"/>
         <location line="+12"/>
-        <source>Meconcash-Qt</source>
+        <source>Peercoin-Qt</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -800,7 +800,7 @@ Address: %4
     </message>
     <message>
         <location line="+6"/>
-        <source>Mandatory network transaction fee per kB transferred. Most transactions are 1 kB and incur a 0.01 MCH fee. Note: transfer size may increase depending on the number of input transactions required to be added together to fund the payment.</source>
+        <source>Mandatory network transaction fee per kB transferred. Most transactions are 1 kB and incur a 0.01 PPC fee. Note: transfer size may increase depending on the number of input transactions required to be added together to fund the payment.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -810,7 +810,7 @@ Address: %4
     </message>
     <message>
         <location line="+31"/>
-        <source>Automatically start Meconcash after logging in to the system.</source>
+        <source>Automatically start Peercoin after logging in to the system.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -820,7 +820,7 @@ Address: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>&amp;Start Meconcash on system login</source>
+        <source>&amp;Start Peercoin on system login</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -845,7 +845,7 @@ Address: %4
     </message>
     <message>
         <location line="+6"/>
-        <source>Automatically open the Meconcash client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the Peercoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -855,7 +855,7 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the Meconcash network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <source>Connect to the Peercoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -930,7 +930,7 @@ Address: %4
     </message>
     <message>
         <location line="+13"/>
-        <source>The user interface language can be set here. This setting will take effect after restarting Meconcash.</source>
+        <source>The user interface language can be set here. This setting will take effect after restarting Peercoin.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -945,7 +945,7 @@ Address: %4
     </message>
     <message>
         <location line="+9"/>
-        <source>Whether to show Meconcash addresses in the transaction list or not.</source>
+        <source>Whether to show Peercoin addresses in the transaction list or not.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -997,7 +997,7 @@ Address: %4
     <message>
         <location line="-9"/>
         <location line="+9"/>
-        <source>This setting will take effect after restarting Meconcash.</source>
+        <source>This setting will take effect after restarting Peercoin.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1016,7 +1016,7 @@ Address: %4
     <message>
         <location line="+50"/>
         <location line="+166"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Meconcash network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Peercoin network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1070,7 +1070,7 @@ Address: %4
     <name>PaymentServer</name>
     <message>
         <location filename="../paymentserver.cpp" line="+107"/>
-        <source>Cannot start meconcash: click-to-pay handler</source>
+        <source>Cannot start peercoin: click-to-pay handler</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1220,7 +1220,7 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Show the Meconcash-Qt help message to get a list with possible Meconcash command-line options.</source>
+        <source>Show the Peercoin-Qt help message to get a list with possible Peercoin command-line options.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1240,12 +1240,12 @@ Address: %4
     </message>
     <message>
         <location line="-104"/>
-        <source>Meconcash - Debug window</source>
+        <source>Peercoin - Debug window</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location line="+25"/>
-        <source>Meconcash Core</source>
+        <source>Peercoin Core</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1255,7 +1255,7 @@ Address: %4
     </message>
     <message>
         <location line="+7"/>
-        <source>Open the Meconcash debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <source>Open the Peercoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1265,7 +1265,7 @@ Address: %4
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="-30"/>
-        <source>Welcome to the Meconcash RPC console.</source>
+        <source>Welcome to the Peercoin RPC console.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1449,7 +1449,7 @@ Address: %4
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
-        <source>Enter a Meconcash address</source>
+        <source>Enter a Peercoin address</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1514,7 +1514,7 @@ Address: %4
     </message>
     <message>
         <location line="+21"/>
-        <source>Sign the message to prove you own this Meconcash address</source>
+        <source>Sign the message to prove you own this Peercoin address</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1550,7 +1550,7 @@ Address: %4
     </message>
     <message>
         <location line="+40"/>
-        <source>Verify the message to ensure it was signed with the specified Meconcash address</source>
+        <source>Verify the message to ensure it was signed with the specified Peercoin address</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1566,7 +1566,7 @@ Address: %4
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
-        <source>Enter a Meconcash address</source>
+        <source>Enter a Peercoin address</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1576,7 +1576,7 @@ Address: %4
     </message>
     <message>
         <location line="+3"/>
-        <source>Enter Meconcash signature</source>
+        <source>Enter Peercoin signature</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1650,7 +1650,7 @@ Address: %4
     <name>SplashScreen</name>
     <message>
         <location filename="../splashscreen.cpp" line="+22"/>
-        <source>The Meconcash developers</source>
+        <source>The Peercoin developers</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2188,8 +2188,8 @@ Address: %4
     <name>bitcoin-core</name>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+94"/>
-        <source>Meconcash version</source>
-        <translation>Meconcash weergawe</translation>
+        <source>Peercoin version</source>
+        <translation>Peercoin weergawe</translation>
     </message>
     <message>
         <location line="+102"/>
@@ -2198,7 +2198,7 @@ Address: %4
     </message>
     <message>
         <location line="-29"/>
-        <source>Send command to -server or meconcashd</source>
+        <source>Send command to -server or peercoind</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2218,12 +2218,12 @@ Address: %4
     </message>
     <message>
         <location line="+24"/>
-        <source>Specify configuration file (default: meconcash.conf)</source>
+        <source>Specify configuration file (default: peercoin.conf)</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
-        <source>Specify pid file (default: meconcashd.pid)</source>
+        <source>Specify pid file (default: peercoind.pid)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2263,7 +2263,7 @@ Address: %4
     </message>
     <message>
         <location line="-134"/>
-        <source>Number of seconds to keep misbehaving peers from reconnecting (default: 96400)</source>
+        <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2273,7 +2273,7 @@ Address: %4
     </message>
     <message>
         <location line="+27"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 18332 or testnet: 28332)</source>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 8332 or testnet: 18332)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2301,13 +2301,13 @@ Address: %4
         <source>%s, you must set a rpcpassword in the configuration file:
 %s
 It is recommended you use the following random password:
-rpcuser=meconcashrpc
+rpcuser=peercoinrpc
 rpcpassword=%s
 (you do not need to remember this password)
 The username and password MUST NOT be the same.
 If the file does not exist, create it with owner-readable-only file permissions.
 It is also recommended to set alertnotify so you are notified of problems;
-for example: alertnotify=echo %%s | mail -s &quot;Meconcash Alert&quot; admin@foo.com
+for example: alertnotify=echo %%s | mail -s &quot;Peercoin Alert&quot; admin@foo.com
 </source>
         <translation type="unfinished"/>
     </message>
@@ -2323,7 +2323,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Meconcash Alert&quot; admin@fo
     </message>
     <message>
         <location line="+3"/>
-        <source>Cannot obtain a lock on data directory %s. Meconcash is probably already running.</source>
+        <source>Cannot obtain a lock on data directory %s. Peercoin is probably already running.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2368,7 +2368,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Meconcash Alert&quot; admin@fo
     </message>
     <message>
         <location line="+3"/>
-        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Meconcash will not work properly.</source>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong Peercoin will not work properly.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2808,12 +2808,12 @@ for example: alertnotify=echo %%s | mail -s &quot;Meconcash Alert&quot; admin@fo
     </message>
     <message>
         <location line="+1"/>
-        <source>Error loading wallet.dat: Wallet requires newer version of Meconcash</source>
+        <source>Error loading wallet.dat: Wallet requires newer version of Peercoin</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location line="+93"/>
-        <source>Wallet needed to be rewritten: restart Meconcash to complete</source>
+        <source>Wallet needed to be rewritten: restart Peercoin to complete</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2873,7 +2873,7 @@ for example: alertnotify=echo %%s | mail -s &quot;Meconcash Alert&quot; admin@fo
     </message>
     <message>
         <location line="-25"/>
-        <source>Unable to bind to %s on this computer. Meconcash is probably already running.</source>
+        <source>Unable to bind to %s on this computer. Peercoin is probably already running.</source>
         <translation type="unfinished"/>
     </message>
     <message>

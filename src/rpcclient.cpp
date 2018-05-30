@@ -261,7 +261,7 @@ std::string HelpMessageCli(bool mainProgram)
     {
         strUsage += _("Options:") + "\n";
         strUsage += "  -?                     " + _("This help message") + "\n";
-        strUsage += "  -conf=<file>           " + _("Specify configuration file (default: mmcoin.conf)") + "\n";
+        strUsage += "  -conf=<file>           " + _("Specify configuration file (default: mecash.conf)") + "\n";
         strUsage += "  -datadir=<dir>         " + _("Specify data directory") + "\n";
         strUsage += "  -testnet               " + _("Use the test network") + "\n";
         strUsage += "  -regtest               " + _("Enter regression test mode, which uses a special chain in which blocks can be "
@@ -271,7 +271,7 @@ std::string HelpMessageCli(bool mainProgram)
     }
 
     strUsage += "  -rpcconnect=<ip>       " + _("Send commands to node running on <ip> (default: 127.0.0.1)") + "\n";
-    strUsage += "  -rpcport=<port>        " + _("Connect to JSON-RPC on <port> (default: 18332 or testnet: 28332)") + "\n";
+    strUsage += "  -rpcport=<port>        " + _("Connect to JSON-RPC on <port> (default: 8332 or testnet: 18332)") + "\n";
     strUsage += "  -rpcwait               " + _("Wait for RPC server to start") + "\n";
     strUsage += "  -rpcuser=<user>        " + _("Username for JSON-RPC connections") + "\n";
     strUsage += "  -rpcpassword=<pw>      " + _("Password for JSON-RPC connections") + "\n";

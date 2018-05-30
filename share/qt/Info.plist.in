@@ -11,7 +11,7 @@
   </array>
 
   <key>CFBundleIconFile</key>
-  <string>mmcoin.icns</string>
+  <string>mecash.icns</string>
 
   <key>CFBundlePackageType</key>
   <string>APPL</string>

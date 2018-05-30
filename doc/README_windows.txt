@@ -1,6 +1,6 @@
-Meconcash 0.6.1 BETA
+Peercoin 0.6.3 BETA
 
-Copyright (c) 2011-2018 Meconcash Developers
+Copyright (c) 2011-2018 Peercoin Developers
 Distributed under the MIT/X11 software license, see the accompanying
 file COPYING or http://www.opensource.org/licenses/mit-license.php.
 This product includes software developed by the OpenSSL Project for use in
@@ -28,7 +28,7 @@ applications if necessary.
 
 The software automatically finds other nodes to connect to.  You can
 enable Universal Plug and Play (UPnP) with your router/firewall
-or forward port 29901 (TCP) to your computer so you can receive
+or forward port 9901 (TCP) to your computer so you can receive
 incoming connections.  Meconcash works without incoming connections,
 but allowing incoming connections helps the Meconcash network.
 

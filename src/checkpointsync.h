@@ -1,8 +1,8 @@
 // Copyright (c) 2012-2018 The Peercoin developers
 // Distributed under conditional MIT/X11 open source software license
 // see the accompanying file COPYING
-#ifndef MMCOIN_CHECKPOINTSYNC_H
-#define  MMCOIN_CHECKPOINTSYNC_H
+#ifndef MECASH_CHECKPOINTSYNC_H
+#define  MECASH_CHECKPOINTSYNC_H
 
 #include "net.h"
 #include "util.h"
@@ -37,7 +37,7 @@ bool IsMatureSyncCheckpoint();
 bool IsSyncCheckpointTooOld(unsigned int nSeconds);
 uint256 WantedByOrphan(const CBlock* pblockOrphan);
 
-// Synchronized checkpoint (introduced first in mmcoin)
+// Synchronized checkpoint (introduced first in mecash)
 class CUnsignedSyncCheckpoint
 {
 public:

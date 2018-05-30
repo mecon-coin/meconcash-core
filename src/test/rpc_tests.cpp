@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE(rpc_rawparams)
     BOOST_CHECK_EQUAL(find_value(r.get_obj(), "version").get_int(), 1);
     BOOST_CHECK_EQUAL(find_value(r.get_obj(), "locktime").get_int(), 0);
     BOOST_CHECK_THROW(r = CallRPC(string("decoderawtransaction ")+rawtx+" extra"), runtime_error);
-    // mmcoin: serialize transaction time
+    // mecash: serialize transaction time
     BOOST_CHECK_EQUAL(find_value(r.get_obj(), "time").get_int(), 1488805154);
 
     BOOST_CHECK_THROW(CallRPC("signrawtransaction"), runtime_error);

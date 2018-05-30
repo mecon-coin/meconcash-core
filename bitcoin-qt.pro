@@ -1,7 +1,7 @@
 TEMPLATE = app
 TARGET = meconcash-qt
-macx:TARGET = "Mecoin-Qt"
-VERSION = 0.6.2
+macx:TARGET = "Meconcash-Qt"
+VERSION = 0.6.3
 INCLUDEPATH += src src/json src/qt
 QT += network core
 greaterThan(QT_MAJOR_VERSION, 4):QT+=widgets

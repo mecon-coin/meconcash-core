@@ -187,7 +187,7 @@ obj/%.o: %.cpp
 
 meconcashd: $(OBJS:obj/%=obj/%)
 	$(LINK) $(xCXXFLAGS) -o $@ $^ $(xLDFLAGS) $(LIBS)
-	@cp $@ mmcoind
+	@cp $@ mecashd
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
 
@@ -203,7 +203,7 @@ test_meconcash: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 
 clean:
 	-rm -f meconcashd test_meconcash
-	-rm -f mmcoind
+	-rm -f mecashd
 	-rm -f obj/*.o
 	-rm -f obj-test/*.o
 	-rm -f obj/*.P

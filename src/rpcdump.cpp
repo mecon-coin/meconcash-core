@@ -61,7 +61,7 @@ Value importprivkey(const Array& params, bool fHelp)
     if (!fGood) throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid private key");
     if (pwalletMain->IsLocked())
         throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Please enter the wallet passphrase with walletpassphrase first.");
-    if (fWalletUnlockMintOnly) // mmcoin: no importprivkey in mint-only mode
+    if (fWalletUnlockMintOnly) // mecash: no importprivkey in mint-only mode
         throw JSONRPCError(-102, "Wallet is unlocked for minting only.");
 
     CKey key;
@@ -100,7 +100,7 @@ Value dumpprivkey(const Array& params, bool fHelp)
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid meconcash address");
     if (pwalletMain->IsLocked())
         throw JSONRPCError(RPC_WALLET_UNLOCK_NEEDED, "Error: Please enter the wallet passphrase with walletpassphrase first.");
-    if (fWalletUnlockMintOnly) // mmcoin: no dumpprivkey in mint-only mode
+    if (fWalletUnlockMintOnly) // mecash: no dumpprivkey in mint-only mode
         throw JSONRPCError(-102, "Wallet is unlocked for minting only.");
 
     CKeyID keyID;

@@ -63,7 +63,7 @@ Value gethashespersec(const Array& params, bool fHelp)
 #endif // DISABLE_MINING
 
 
-// mmcoin: get network Gh/s estimate
+// mecash: get network Gh/s estimate
 Value getnetworkghps(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)

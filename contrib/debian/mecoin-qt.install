@@ -1,6 +1,0 @@
-usr/local/bin/meconcash-qt usr/bin
-share/pixmaps/meconcash32.xpm usr/share/pixmaps
-share/pixmaps/meconcash16.xpm usr/share/pixmaps
-share/pixmaps/meconcash128.png usr/share/pixmaps
-debian/meconcash-qt.desktop usr/share/applications
-debian/meconcash-qt.protocol usr/share/kde4/services/

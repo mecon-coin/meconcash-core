@@ -15,8 +15,6 @@ double GetDifficulty(const CBlockIndex* blockindex)
 {
     // Floating point number that is a multiple of the minimum difficulty,
     // minimum difficulty = 1.0.
-
-
     if (blockindex == NULL)
     {
         if (pindexBest == NULL)
@@ -24,7 +22,6 @@ double GetDifficulty(const CBlockIndex* blockindex)
         else
             blockindex = GetLastBlockIndex(pindexBest, false);
     }
-
 
     return blockindex->GetBlockDifficulty();
 }
@@ -196,7 +193,7 @@ Value getblock(const Array& params, bool fHelp)
 	std::string strHex = HexStr(ssBlock.begin(), ssBlock.end());
         return strHex;
       }
-
+ 
     return blockToJSON(block, pblockindex, fTxinfo);
 }
 
@@ -266,3 +263,5 @@ Value gettxout(const Array& params, bool fHelp)
 
     return ret;
 }
+
+

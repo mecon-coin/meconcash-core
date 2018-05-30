@@ -10,23 +10,19 @@
 
 // These need to be macros, as version.cpp's and bitcoin-qt.rc's voodoo requires it
 #define CLIENT_VERSION_MAJOR       0
-#define CLIENT_VERSION_MINOR       9
+#define CLIENT_VERSION_MINOR       8
 #define CLIENT_VERSION_REVISION    6
 #define CLIENT_VERSION_BUILD       0
 
 // Set to true for release, false for prerelease or test build
 #define CLIENT_VERSION_IS_RELEASE  true
 
-// Copyright year (2009-this)
-// Todo: update this when changing our copyright comments in the source
-#define COPYRIGHT_YEAR 2013
-
 #endif //HAVE_CONFIG_H
 
-// mmcoin version - intended for display purpose ONLY
+// mecash version - intended for display purpose ONLY
 #define MECONCASH_VERSION_MAJOR       0
-#define MECONCASH_VERSION_MINOR       7
-#define MECONCASH_VERSION_REVISION    2
+#define MECONCASH_VERSION_MINOR       6
+#define MECONCASH_VERSION_REVISION    3
 #define MECONCASH_VERSION_BUILD       0
 
 // Copyright year (2009-this)

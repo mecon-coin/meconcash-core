@@ -1083,13 +1083,13 @@ boost::filesystem::path GetDefaultDataDir()
 boost::filesystem::path GetOldDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\MMCOIN
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\MMCOIN
-    // Mac: ~/Library/Application Support/MMCOIN
-    // Unix: ~/.mmcoin
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\MECash
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\MECash
+    // Mac: ~/Library/Application Support/MECash
+    // Unix: ~/.mecash
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "MMCOIN";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "MECash";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -1101,10 +1101,10 @@ boost::filesystem::path GetOldDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     fs::create_directory(pathRet);
-    return pathRet / "MMCOIN";
+    return pathRet / "MECash";
 #else
     // Unix
-    return pathRet / ".mmcoin";
+    return pathRet / ".mecash";
 #endif
 #endif
 }
@@ -1160,7 +1160,7 @@ boost::filesystem::path GetConfigFile()
 
     // Load old config file if present
     if (mapArgs.count("-conf") == 0 && !boost::filesystem::exists(pathConfigFile)) {
-        boost::filesystem::path pathOldConfigFile = GetDataDir(false) / "mmcoin.conf";
+        boost::filesystem::path pathOldConfigFile = GetDataDir(false) / "mecash.conf";
         if (boost::filesystem::exists(pathOldConfigFile))
             pathConfigFile = pathOldConfigFile;
     }

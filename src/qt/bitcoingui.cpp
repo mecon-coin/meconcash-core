@@ -1,5 +1,5 @@
 /*
- * Qt4 mmcoin GUI.
+ * Qt4 mecash GUI.
  *
  * W.J. van der Laan 2011-2012
  * The Bitcoin developers 2011-2012
@@ -317,8 +317,8 @@ void BitcoinGUI::createMenuBar()
 
     QMenu *help = appMenuBar->addMenu(tr("&Help"));
     help->addAction(openRPCConsoleAction);
-    // help->addAction(openChatroomAction);
-    // help->addAction(openForumAction);
+    help->addAction(openChatroomAction);
+    help->addAction(openForumAction);
     help->addSeparator();
     help->addAction(aboutAction);
     help->addAction(aboutQtAction);

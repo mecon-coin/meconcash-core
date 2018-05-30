@@ -206,6 +206,7 @@ RES_ICONS = \
   qt/res/icons/editpaste.png \
   qt/res/icons/editcopy.png \
   qt/res/icons/add.png \
+  qt/res/icons/bitcoin_testnet.png \
   qt/res/icons/toolbar_testnet.png \
   qt/res/icons/edit.png \
   qt/res/icons/history.png \
@@ -223,7 +224,8 @@ RES_ICONS = \
   qt/res/icons/filesave.png \
   qt/res/icons/qrcode.png \
   qt/res/icons/debugwindow.png \
-  qt/res/icons/meconcash.ico
+  qt/res/icons/meconcash.ico \
+  qt/res/icons/bitcoin_testnet.ico
 
 MECONCASH_QT_CPP = \
   qt/bitcoin.cpp \
@@ -242,7 +244,7 @@ MECONCASH_QT_CPP = \
   qt/qvalidatedlineedit.cpp \
   qt/qvaluecombobox.cpp \
   qt/rpcconsole.cpp \
-  qt/splashscreen.cpp
+  qt/splashscreen.cpp 
 
 if ENABLE_WALLET
 MECONCASH_QT_CPP += \
@@ -321,9 +323,9 @@ endif
 if USE_QRCODE
   qt_meconcash_qt_SOURCES += qt/qrcodedialog.cpp
 endif
-qt_meconcash_qt_LDADD = qt/libmeconcashqt.a $(LIBMECONCASH_SERVER)
+qt_meconcash_qt_LDADD = qt/libmeconcashqt.a $(LIBMECONCASH_SERVER) 
 if ENABLE_WALLET
-qt_meconcash_qt_LDADD += $(LIBMECONCASH_WALLET)
+qt_meconcash_qt_LDADD += $(LIBMECONCASH_WALLET) 
 endif
 qt_meconcash_qt_LDADD += $(LIBMECONCASH_CLI) $(LIBMECONCASH_COMMON) $(LIBLEVELDB) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(BDB_LIBS)
@@ -342,7 +344,7 @@ translate: qt/bitcoinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(MECONCASH_QT_CP
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
 	@QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/bitcoin_en.ts
 
-$(QT_QRC_CPP): $(QT_QRC) $(QT_QM) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES)
+$(QT_QRC_CPP): $(QT_QRC) $(QT_QM) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES) 
 	@cd $(abs_srcdir); test -f $(RCC) && $(RCC) -name bitcoin -o $(abs_builddir)/$@ $< || \
 	  echo error: could not build $@
 	$(SED) -i.bak -e '/^\*\*.*Created:/d' $@ && rm $@.bak

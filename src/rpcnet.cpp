@@ -208,7 +208,7 @@ Value getaddednodeinfo(const Array& params, bool fHelp)
     return ret;
 }
 
-// mmcoin: make a public-private key pair
+// mecash: make a public-private key pair
 Value makekeypair(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 1)
@@ -242,7 +242,7 @@ Value makekeypair(const Array& params, bool fHelp)
     return result;
 }
 
-// mmcoin: display key pair from hex private key
+// mecash: display key pair from hex private key
 Value showkeypair(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
@@ -274,7 +274,7 @@ Value showkeypair(const Array& params, bool fHelp)
     return result;
 }
 
-// mmcoin: send alert.  
+// mecash: send alert.  
 // There is a known deadlock situation with ThreadMessageHandler
 // ThreadMessageHandler: holds cs_vSend and acquiring cs_main in SendMessages()
 // ThreadRPCServer: holds cs_main and acquiring cs_vSend in alert.RelayTo()/PushMessage()/BeginMessage()

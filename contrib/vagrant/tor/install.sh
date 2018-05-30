@@ -7,6 +7,6 @@ sudo apt-get update -qq
 sudo apt-get install -y -qq tor deb.torproject.org-keyring
 
 
-echo "HiddenServiceDir /var/lib/tor/mmcoin-service/" | sudo tee -a /etc/tor/torrc
+echo "HiddenServiceDir /var/lib/tor/mecash-service/" | sudo tee -a /etc/tor/torrc
 echo "HiddenServicePort 29901 127.0.0.1:29901" | sudo tee -a /etc/tor/torrc
 sudo systemctl restart tor.service

@@ -68,13 +68,13 @@ using namespace json_spirit;
 using namespace std;
 
 
-// mmcoin: sync-checkpoint master key
+// mecash: sync-checkpoint master key
 const std::string CSyncCheckpoint::strMainPubKey = "04c0c707c28533fd5c9f79d2d3a2d80dff259ad8f915241cd14608fb9bc07c74830efe8438f2b272a866b4af5e0c2cc2a9909972aefbd976937e39f46bb38c277c";
 const std::string CSyncCheckpoint::strTestPubKey = "0400c195be8d5194007b3f02249f785a51505776bd8f43cc6d49206163e08a63ad9009c814966921c361b14949c51e281edc9347e7ce0e8c57019df1313a6cac7b";
 std::string CSyncCheckpoint::strMasterPrivKey = "";
 
 
-// mmcoin: synchronized checkpoint (centrally broadcasted)
+// mecash: synchronized checkpoint (centrally broadcasted)
 uint256 hashSyncCheckpoint = 0;
 uint256 hashPendingCheckpoint = 0;
 CSyncCheckpoint checkpointMessage;
@@ -83,7 +83,7 @@ uint256 hashInvalidCheckpoint = 0;
 CCriticalSection cs_hashSyncCheckpoint;
 std::string strCheckpointWarning;
 
-// mmcoin: get last synchronized checkpoint
+// mecash: get last synchronized checkpoint
 CBlockIndex* GetLastSyncCheckpoint()
 {
     LOCK(cs_hashSyncCheckpoint);
@@ -94,7 +94,7 @@ CBlockIndex* GetLastSyncCheckpoint()
     return NULL;
 }
 
-// mmcoin: only descendant of current sync-checkpoint is allowed
+// mecash: only descendant of current sync-checkpoint is allowed
 bool ValidateSyncCheckpoint(uint256 hashCheckpoint)
 {
     if (!mapBlockIndex.count(hashSyncCheckpoint))
@@ -252,7 +252,7 @@ bool WantedByPendingSyncCheckpoint(uint256 hashBlock)
     return false;
 }
 
-// mmcoin: reset synchronized checkpoint to last hardened checkpoint
+// mecash: reset synchronized checkpoint to last hardened checkpoint
 bool ResetSyncCheckpoint()
 {
     LOCK(cs_hashSyncCheckpoint);
@@ -386,7 +386,7 @@ bool IsSyncCheckpointTooOld(unsigned int nSeconds)
     return (pindexSync->GetBlockTime() + nSeconds < GetAdjustedTime());
 }
 
-// mmcoin: find block wanted by given orphan block
+// mecash: find block wanted by given orphan block
 uint256 WantedByOrphan(const CBlock* pblockOrphan)
 {
     // Work back to the first block in the orphan chain
@@ -395,7 +395,7 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan)
     return pblockOrphan->hashPrevBlock;
 }
 
-// mmcoin: verify signature of sync-checkpoint message
+// mecash: verify signature of sync-checkpoint message
 bool CSyncCheckpoint::CheckSignature()
 {
     CKey key;
@@ -411,7 +411,7 @@ bool CSyncCheckpoint::CheckSignature()
     return true;
 }
 
-// mmcoin: process synchronized checkpoint
+// mecash: process synchronized checkpoint
 bool CSyncCheckpoint::ProcessSyncCheckpoint(CNode* pfrom)
 {
     if (!CheckSignature())
@@ -461,7 +461,7 @@ bool CSyncCheckpoint::ProcessSyncCheckpoint(CNode* pfrom)
 
 
 // RPC commands related to sync checkpoints
-// get information of sync-checkpoint (first introduced in mmcoin)
+// get information of sync-checkpoint (first introduced in mecash)
 Value getcheckpoint(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 0)

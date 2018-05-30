@@ -36,13 +36,11 @@ unsigned int nTransactionsUpdated = 0;
 map<uint256, CBlockIndex*> mapBlockIndex;
 set<pair<COutPoint, unsigned int> > setStakeSeen;
 uint256 hashGenesisBlock = hashGenesisBlockOfficial;
-static CBigNum bnProofOfWorkLimit(~uint256(0) >> 12);
-static CBigNum bnProofOfWorkLimit2(~uint256(0) >> 32);
-static CBigNum bnInitialHashTarget(~uint256(0) >> 20);
+static CBigNum bnProofOfWorkLimit(~uint256(0) >> 28);
+static CBigNum bnInitialHashTarget(~uint256(0) >> 40);
 unsigned int nStakeMinAge = STAKE_MIN_AGE;
-int nCoinbaseMaturity = COINBASE_MATURITY_PPC;
+int nCoinbaseMaturity = COINBASE_MATURITY_MCH;
 CBlockIndex* pindexGenesisBlock = NULL;
-
 int nBestHeight = -1;
 uint256 nBestChainTrust = 0;
 uint256 nBestInvalidTrust = 0;
@@ -136,7 +134,7 @@ void SyncWithWallets(const uint256 &hash, const CTransaction& tx, const CBlock* 
 {
     if (!fConnect)
     {
-        // mmcoin: wallets need to refund inputs when disconnecting coinstake
+        // mecash: wallets need to refund inputs when disconnecting coinstake
         if (tx.IsCoinStake())
         {
             BOOST_FOREACH(CWallet* pwallet, setpwalletRegistered)
@@ -609,7 +607,7 @@ bool CTransaction::CheckTransaction(CValidationState &state) const
     {
         if (txout.IsEmpty() && (!IsCoinBase()) && (!IsCoinStake()))
             return state.DoS(100, error("CTransaction::CheckTransaction() : txout empty for user transaction"));
-        // mmcoin: enforce minimum output amount
+        // mecash: enforce minimum output amount
         // v0.5 protocol: zero amount allowed
         if ((!txout.IsEmpty()) && txout.nValue < MIN_TXOUT_AMOUNT &&
             !(IsProtocolV05(nTime) && (txout.nValue == 0)))
@@ -715,7 +713,7 @@ bool CTxMemPool::accept(CValidationState &state, CTransaction &tx, bool fCheckIn
     // Coinbase is only valid in a block, not as a loose transaction
     if (tx.IsCoinBase())
         return state.DoS(100, error("CTxMemPool::accept() : coinbase as individual tx"));
-    // mmcoin: coinstake is also only valid in a block, not as a loose transaction
+    // mecash: coinstake is also only valid in a block, not as a loose transaction
     if (tx.IsCoinStake())
         return state.DoS(100, error("CTxMemPool::accept() : coinstake as individual tx"));
 
@@ -1125,46 +1123,44 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
 
 int64 GetProofOfWorkReward(unsigned int nBits)
 {
-    if (pindexBest == NULL || pindexBest->nMoneySupply < 200000000 * COIN)
+    int64 premine = 208000000 * COIN;
+    if (pindexBest == NULL || pindexBest->nMoneySupply < premine) {
         return 1000000 * COIN;
-    if (pindexBest->nMoneySupply < (50000000 + 200000000) * COIN)
-        return 10 * COIN;
-    if (pindexBest->nMoneySupply < (100000000 + 200000000) * COIN)
-        return 0.1 * COIN;
+    } else if (pindexBest->nMoneySupply - premine < 50000000 * COIN) {
+        return 1000 * COIN;
+    }
 
-    return 0.01 * COIN;
+    CBigNum bnSubsidyLimit = MAX_MINT_PROOF_OF_WORK;
+    CBigNum bnTarget;
+    bnTarget.SetCompact(nBits);
+    CBigNum bnTargetLimit = bnProofOfWorkLimit;
+    bnTargetLimit.SetCompact(bnTargetLimit.GetCompact());
 
-    // CBigNum bnSubsidyLimit = MAX_MINT_PROOF_OF_WORK;
-    // CBigNum bnTarget;
-    // bnTarget.SetCompact(nBits);
-    // CBigNum bnTargetLimit = bnProofOfWorkLimit;
-    // bnTargetLimit.SetCompact(bnTargetLimit.GetCompact());
+    // mecash: subsidy is cut in half every 16x multiply of difficulty
+    // A reasonably continuous curve is used to avoid shock to market
+    // (nSubsidyLimit / nSubsidy) ** 4 == bnProofOfWorkLimit / bnTarget
+    CBigNum bnLowerBound = CENT;
+    CBigNum bnUpperBound = bnSubsidyLimit;
+    while (bnLowerBound + CENT <= bnUpperBound)
+    {
+        CBigNum bnMidValue = (bnLowerBound + bnUpperBound) / 2;
+        if (fDebug && GetBoolArg("-printcreation"))
+            printf("GetProofOfWorkReward() : lower=%" PRI64d" upper=%" PRI64d" mid=%" PRI64d"\n", bnLowerBound.getuint64(), bnUpperBound.getuint64(), bnMidValue.getuint64());
+        if (bnMidValue * bnMidValue * bnMidValue * bnMidValue * bnTargetLimit > bnSubsidyLimit * bnSubsidyLimit * bnSubsidyLimit * bnSubsidyLimit * bnTarget)
+            bnUpperBound = bnMidValue;
+        else
+            bnLowerBound = bnMidValue;
+    }
 
-    // // mmcoin: subsidy is cut in half every 16x multiply of difficulty
-    // // A reasonably continuous curve is used to avoid shock to market
-    // // (nSubsidyLimit / nSubsidy) ** 4 == bnProofOfWorkLimit / bnTarget
-    // CBigNum bnLowerBound = CENT;
-    // CBigNum bnUpperBound = bnSubsidyLimit;
-    // while (bnLowerBound + CENT <= bnUpperBound)
-    // {
-    //     CBigNum bnMidValue = (bnLowerBound + bnUpperBound) / 2;
-    //     if (fDebug && GetBoolArg("-printcreation"))
-    //         printf("GetProofOfWorkReward() : lower=%" PRI64d" upper=%" PRI64d" mid=%" PRI64d"\n", bnLowerBound.getuint64(), bnUpperBound.getuint64(), bnMidValue.getuint64());
-    //     if (bnMidValue * bnMidValue * bnMidValue * bnMidValue * bnTargetLimit > bnSubsidyLimit * bnSubsidyLimit * bnSubsidyLimit * bnSubsidyLimit * bnTarget)
-    //         bnUpperBound = bnMidValue;
-    //     else
-    //         bnLowerBound = bnMidValue;
-    // }
+    int64 nSubsidy = bnUpperBound.getuint64();
+    nSubsidy = (nSubsidy / CENT) * CENT;
+    if (fDebug && GetBoolArg("-printcreation"))
+        printf("GetProofOfWorkReward() : create=%s nBits=0x%08x nSubsidy=%" PRI64d"\n", FormatMoney(nSubsidy).c_str(), nBits, nSubsidy);
 
-    // int64 nSubsidy = bnUpperBound.getuint64();
-    // nSubsidy = (nSubsidy / CENT) * CENT;
-    // if (fDebug && GetBoolArg("-printcreation"))
-    //     printf("GetProofOfWorkReward() : create=%s nBits=0x%08x nSubsidy=%" PRI64d"\n", FormatMoney(nSubsidy).c_str(), nBits, nSubsidy);
-
-    // return min(nSubsidy, MAX_MINT_PROOF_OF_WORK);
+    return min(nSubsidy, MAX_MINT_PROOF_OF_WORK);
 }
 
-// mmcoin: miner's coin stake is rewarded based on coin age spent (coin-days)
+// mecash: miner's coin stake is rewarded based on coin age spent (coin-days)
 int64 GetProofOfStakeReward(int64 nCoinAge)
 {
     static int64 nRewardCoinYear = CENT;  // creation amount per coin-year
@@ -1201,7 +1197,7 @@ void static PruneOrphanBlocks()
 
 
 static const int64 nTargetTimespan = 7 * 24 * 60 * 60;  // one week
-static const int64 nTargetSpacingWorkMax = 12 * STAKE_TARGET_SPACING; // 2 hours
+static const int64 nTargetSpacingWorkMax = 12 * STAKE_TARGET_SPACING; // 2-hour
 
 //
 // minimum amount of work that could possibly be required nTime after
@@ -1223,7 +1219,7 @@ unsigned int ComputeMinWork(unsigned int nBase, int64 nTime)
     return bnResult.GetCompact();
 }
 
-// mmcoin: find last block index up to pindex
+// mecash: find last block index up to pindex
 const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfStake)
 {
     while (pindex && pindex->pprev && (pindex->IsProofOfStake() != fProofOfStake))
@@ -1242,39 +1238,26 @@ unsigned int static GetNextTargetRequired(const CBlockIndex* pindexLast, bool fP
 
     const CBlockIndex* pindexPrev = GetLastBlockIndex(pindexLast, fProofOfStake);
     if (pindexPrev->pprev == NULL)
-        return bnProofOfWorkLimit.GetCompact();
-        //return bnInitialHashTarget.GetCompact(); // first block
+        return bnInitialHashTarget.GetCompact(); // first block
     const CBlockIndex* pindexPrevPrev = GetLastBlockIndex(pindexPrev->pprev, fProofOfStake);
     if (pindexPrevPrev->pprev == NULL)
-        return bnProofOfWorkLimit.GetCompact();
-        //return bnInitialHashTarget.GetCompact(); // second block
+        return bnInitialHashTarget.GetCompact(); // second block
 
     int64 nActualSpacing = pindexPrev->GetBlockTime() - pindexPrevPrev->GetBlockTime();
 
+    // mecash: target change every block
+    // mecash: retarget with exponential moving toward target spacing
     CBigNum bnNew;
-    if (pindexBest->nMoneySupply > (50000000 + 200000000) * COIN)
-    {
-      // mmcoin: target change every block
-      // mmcoin: retarget with exponential moving toward target spacing
-      bnNew.SetCompact(pindexPrev->nBits);
-      int64 nTargetSpacing = fProofOfStake? STAKE_TARGET_SPACING : min(nTargetSpacingWorkMax, (int64) STAKE_TARGET_SPACING * (1 + pindexLast->nHeight - pindexPrev->nHeight));
-      int64 nInterval = nTargetTimespan / nTargetSpacing;
-      bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
-      bnNew /= ((nInterval + 1) * nTargetSpacing);
+    bnNew.SetCompact(pindexPrev->nBits);
+    int64 nTargetSpacing = fProofOfStake? STAKE_TARGET_SPACING : min(nTargetSpacingWorkMax, (int64) STAKE_TARGET_SPACING * (1 + pindexLast->nHeight - pindexPrev->nHeight));
+    int64 nInterval = nTargetTimespan / nTargetSpacing;
+    bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
+    bnNew /= ((nInterval + 1) * nTargetSpacing);
 
-      if (bnNew > bnProofOfWorkLimit)
-          bnNew = bnProofOfWorkLimit;
-    }
-    else if(pindexBest->nMoneySupply > (200000000) * COIN){
-      bnNew = bnProofOfWorkLimit2;
-    }
-    else{
-      bnNew = bnProofOfWorkLimit;
-    }
-    //return bnNew.GetCompact();
+    if (bnNew > bnProofOfWorkLimit)
+        bnNew = bnProofOfWorkLimit;
 
     return bnNew.GetCompact();
-
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits)
@@ -1331,7 +1314,7 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
       DateTimeStrFormat("%Y-%m-%d %H:%M:%S", pindexBest->GetBlockTime()).c_str());
     if (pindexBest && nBestInvalidTrust > nBestChainTrust + (pindexBest->GetBlockTrust() * 6).getuint256())
         printf("InvalidChainFound: Warning: Displayed transactions may not be correct! You may need to upgrade, or other nodes may need to upgrade.\n");
-    // mmcoin: should not enter safe mode for longer invalid chain
+    // mecash: should not enter safe mode for longer invalid chain
 }
 
 void static InvalidBlockFound(CBlockIndex *pindex) {
@@ -1527,7 +1510,7 @@ bool CTransaction::CheckInputs(CValidationState &state, CCoinsViewCache &inputs,
                     return state.Invalid(error("CheckInputs() : tried to spend coinbase at depth %d", nSpendHeight - coins.nHeight));
             }
 
-            // mmcoin: check transaction timestamp
+            // mecash: check transaction timestamp
             if (coins.nTime > nTime)
                 return state.DoS(100, error("CheckInputs() : transaction timestamp earlier than input transaction"));
 
@@ -1540,7 +1523,7 @@ bool CTransaction::CheckInputs(CValidationState &state, CCoinsViewCache &inputs,
 
         if (IsCoinStake())
         {
-            // mmcoin: coin stake tx earns reward instead of paying fee
+            // mecash: coin stake tx earns reward instead of paying fee
             uint64 nCoinAge;
             if (!GetCoinAge(state, inputs, nCoinAge))
                 return error("CheckInputs() : %s unable to get coin age for coinstake", GetHash().ToString().c_str());
@@ -1552,12 +1535,12 @@ bool CTransaction::CheckInputs(CValidationState &state, CCoinsViewCache &inputs,
         {
             if (nValueIn < GetValueOut())
                 return state.DoS(100, error("CheckInputs() : %s value in < value out", GetHash().ToString().c_str()));
-
+    
             // Tally transaction fees
             int64 nTxFee = nValueIn - GetValueOut();
             if (nTxFee < 0)
                 return state.DoS(100, error("CheckInputs() : %s nTxFee < 0", GetHash().ToString().c_str()));
-            // mmcoin: enforce transaction fees for every block
+            // mecash: enforce transaction fees for every block
             if (nTxFee < GetMinFee())
                 return state.DoS(100, error("CheckInputs() : %s not paying required fee=%s, paid=%s", GetHash().ToString().c_str(), FormatMoney(GetMinFee()).c_str(), FormatMoney(nTxFee).c_str()));
             nFees += nTxFee;
@@ -1663,8 +1646,8 @@ bool CBlock::DisconnectBlock(CValidationState &state, CBlockIndex *pindex, CCoin
                     coins.fCoinBase = undo.fCoinBase;
                     coins.nHeight = undo.nHeight;
                     coins.nVersion = undo.nVersion;
-                    coins.fCoinStake = undo.fCoinStake; // mmcoin
-                    coins.nTime = undo.nTime;           // mmcoin
+                    coins.fCoinStake = undo.fCoinStake; // mecash
+                    coins.nTime = undo.nTime;           // mecash
                 } else {
                     if (coins.IsPruned())
                         fClean = fClean && error("DisconnectBlock() : undo data adding output to missing transaction");
@@ -1683,7 +1666,7 @@ bool CBlock::DisconnectBlock(CValidationState &state, CBlockIndex *pindex, CCoin
     // move best block pointer to prevout block
     view.SetBestBlock(pindex->pprev);
 
-    // mmcoin: clean up wallet after disconnecting coinstake
+    // mecash: clean up wallet after disconnecting coinstake
     BOOST_FOREACH(CTransaction& tx, vtx)
         SyncWithWallets(tx.GetHash(), tx, this, false, false);
 
@@ -1758,11 +1741,9 @@ bool CBlock::ConnectBlock(CValidationState &state, CBlockIndex* pindex, CCoinsVi
     // Now that the whole chain is irreversibly beyond that time it is applied to all blocks except the
     // two in the chain that violate it. This prevents exploiting the issue against nodes in their
     // initial block download.
-    // bool fEnforceBIP30 = (!pindex->phashBlock) || // Enforce on CreateNewBlock invocations which don't have a hash.
-    //                       !((pindex->nHeight==91842 && pindex->GetBlockHash() == uint256("0x00000000000a4d0a398161ffc163c503763b1f4360639393e0e4c8e300e0caec")) ||
-    //                        (pindex->nHeight==91880 && pindex->GetBlockHash() == uint256("0x00000000000743f190a18c5577a3c2d2a1f610ae9601ac046a38084ccb7cd721")));
-    bool fEnforceBIP30 = false;
-
+    bool fEnforceBIP30 = (!pindex->phashBlock) || // Enforce on CreateNewBlock invocations which don't have a hash.
+                          !((pindex->nHeight==91842 && pindex->GetBlockHash() == uint256("0x00000000000a4d0a398161ffc163c503763b1f4360639393e0e4c8e300e0caec")) ||
+                           (pindex->nHeight==91880 && pindex->GetBlockHash() == uint256("0x00000000000743f190a18c5577a3c2d2a1f610ae9601ac046a38084ccb7cd721")));
     if (fEnforceBIP30) {
         for (unsigned int i=0; i<vtx.size(); i++) {
             uint256 hash = GetTxHash(i);
@@ -1847,7 +1828,7 @@ bool CBlock::ConnectBlock(CValidationState &state, CBlockIndex* pindex, CCoinsVi
     if (fBenchmark)
         printf("- Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin)\n", (unsigned)vtx.size(), 0.001 * nTime, 0.001 * nTime / vtx.size(), nInputs <= 1 ? 0 : 0.001 * nTime / (nInputs-1));
 
-    // mmcoin: coinbase reward check relocated to CheckBlock()
+    // mecash: coinbase reward check relocated to CheckBlock()
 
     if (!control.Wait())
         return state.DoS(100, false);
@@ -1858,12 +1839,12 @@ bool CBlock::ConnectBlock(CValidationState &state, CBlockIndex* pindex, CCoinsVi
     if (fJustCheck)
         return true;
 
-    // mmcoin: track money supply and mint amount info
+    // mecash: track money supply and mint amount info
     pindex->nMint = nValueOut - nValueIn + nFees;
     pindex->nMoneySupply = (pindex->pprev? pindex->pprev->nMoneySupply : 0) + nValueOut - nValueIn;
 
-    // mmcoin: fees are not collected by miners as in bitcoin
-    // mmcoin: fees are destroyed to compensate the entire network
+    // mecash: fees are not collected by miners as in bitcoin
+    // mecash: fees are destroyed to compensate the entire network
     if (fDebug && GetBoolArg("-printcreation"))
         printf("ConnectBlock() : destroy=%s nFees=%" PRI64d"\n", FormatMoney(nFees).c_str(), nFees);
 
@@ -2092,10 +2073,10 @@ bool SetBestChain(CValidationState &state, CBlockIndex* pindexNew)
 }
 
 
-// mmcoin: total coin age spent in transaction, in the unit of coin-days.
+// mecash: total coin age spent in transaction, in the unit of coin-days.
 // Only those coins meeting minimum age requirement counts. As those
 // transactions not in main chain are not currently indexed so we
-// might not find out about their coin age. Older transactions are
+// might not find out about their coin age. Older transactions are 
 // guaranteed to be in main chain by sync-checkpoint. This rule is
 // introduced to help nodes establish a consistent view of the coin
 // age (trust score) of competing branches.
@@ -2158,7 +2139,7 @@ bool CTransaction::GetCoinAge(CValidationState &state, CCoinsViewCache &view, ui
     return true;
 }
 
-// mmcoin: total coin age spent in block, in the unit of coin-days.
+// mecash: total coin age spent in block, in the unit of coin-days.
 bool CBlock::GetCoinAge(uint64& nCoinAge) const
 {
     nCoinAge = 0;
@@ -2208,11 +2189,11 @@ bool CBlock::AddToBlockIndex(CValidationState &state, const CDiskBlockPos &pos)
     pindexNew->nUndoPos = 0;
     pindexNew->nStatus = BLOCK_VALID_TRANSACTIONS | BLOCK_HAVE_DATA;
 
-    // mmcoin: compute stake entropy bit for stake modifier
+    // mecash: compute stake entropy bit for stake modifier
     if (!pindexNew->SetStakeEntropyBit(GetStakeEntropyBit()))
         return error("AddToBlockIndex() : SetStakeEntropyBit() failed");
 
-    // mmcoin: record proof-of-stake hash value
+    // mecash: record proof-of-stake hash value
     if (pindexNew->IsProofOfStake())
     {
         if (!mapProofOfStake.count(hash))
@@ -2220,7 +2201,7 @@ bool CBlock::AddToBlockIndex(CValidationState &state, const CDiskBlockPos &pos)
         pindexNew->hashProofOfStake = mapProofOfStake[hash];
     }
 
-    // mmcoin: compute stake modifier
+    // mecash: compute stake modifier
     uint64 nStakeModifier = 0;
     bool fGeneratedStakeModifier = false;
     if (!ComputeNextStakeModifier(pindexNew, nStakeModifier, fGeneratedStakeModifier))
@@ -2230,7 +2211,7 @@ bool CBlock::AddToBlockIndex(CValidationState &state, const CDiskBlockPos &pos)
     if (!CheckStakeModifierCheckpoints(pindexNew->nHeight, pindexNew->nStakeModifierChecksum))
         return error("AddToBlockIndex() : Rejected by stake modifier checkpoint height=%d, modifier=0x%016" PRI64x, pindexNew->nHeight, nStakeModifier);
 
-    // mmcoin: remember stake
+    // mecash: remember stake
     if (pindexNew->IsProofOfStake())
         setStakeSeen.insert(make_pair(pindexNew->prevoutStake, pindexNew->nStakeTime));
 
@@ -2397,12 +2378,12 @@ bool CBlock::CheckBlock(CValidationState &state, bool fCheckPOW, bool fCheckMerk
         if (vtx[i].IsCoinBase())
             return state.DoS(100, error("CheckBlock() : more than one coinbase"));
 
-    // mmcoin: only the second transaction can be the optional coinstake
+    // mecash: only the second transaction can be the optional coinstake
     for (unsigned int i = 2; i < vtx.size(); i++)
         if (vtx[i].IsCoinStake())
             return state.DoS(100, error("CheckBlock() : coinstake in wrong position"));
 
-    // mmcoin: coinbase output should be empty if proof-of-stake block
+    // mecash: coinbase output should be empty if proof-of-stake block
     if (IsProofOfStake() && (vtx[0].vout.size() != 1 || !vtx[0].vout[0].IsEmpty()))
         return error("CheckBlock() : coinbase output not empty for proof-of-stake block");
 
@@ -2416,7 +2397,7 @@ bool CBlock::CheckBlock(CValidationState &state, bool fCheckPOW, bool fCheckMerk
 
     // Check coinbase reward
     if (vtx[0].GetValueOut() > (IsProofOfWork()? (GetProofOfWorkReward(nBits) - vtx[0].GetMinFee() + MIN_TX_FEE) : 0))
-        return state.DoS(50, error("CheckBlock() : coinbase reward exceeded %s > %s",
+        return state.DoS(50, error("CheckBlock() : coinbase reward exceeded %s > %s", 
                    FormatMoney(vtx[0].GetValueOut()).c_str(),
                    FormatMoney(IsProofOfWork()? GetProofOfWorkReward(nBits) : 0).c_str()));
 
@@ -2425,7 +2406,7 @@ bool CBlock::CheckBlock(CValidationState &state, bool fCheckPOW, bool fCheckMerk
     {
         if (!tx.CheckTransaction(state))
             return error("CheckBlock() : CheckTransaction failed");
-        // mmcoin: check transaction timestamp
+        // mecash: check transaction timestamp
         if (GetBlockTime() < (int64)tx.nTime)
             return state.DoS(50, error("CheckBlock() : block timestamp earlier than transaction timestamp"));
     }
@@ -2456,7 +2437,7 @@ bool CBlock::CheckBlock(CValidationState &state, bool fCheckPOW, bool fCheckMerk
     if (fCheckMerkleRoot && hashMerkleRoot != BuildMerkleTree())
         return state.DoS(100, error("CheckBlock() : hashMerkleRoot mismatch"));
 
-    // mmcoin: check block signature
+    // mecash: check block signature
     // Only check block signature if check merkle root, c.f. commit 3cd01fdf
     if (fCheckMerkleRoot && !CheckBlockSignature())
         return state.DoS(100, error("CheckBlock() : bad block signature"));
@@ -2501,7 +2482,7 @@ bool CBlock::AcceptBlock(CValidationState &state, CDiskBlockPos *dbp)
         if (!Checkpoints::CheckHardened(nHeight, hash))
             return state.DoS(100, error("AcceptBlock() : rejected by hardened checkpoint lock-in at %d", nHeight));
 
-        // mmcoin: check that the block satisfies synchronized checkpoint
+        // mecash: check that the block satisfies synchronized checkpoint
         if (IsSyncCheckpointEnforced() // checkpoint enforce mode
             && !CheckSyncCheckpoint(hash, pindexPrev))
             return state.Invalid(error("AcceptBlock() : rejected by synchronized checkpoint"));
@@ -2551,7 +2532,7 @@ bool CBlock::AcceptBlock(CValidationState &state, CDiskBlockPos *dbp)
                 pnode->PushInventory(CInv(MSG_BLOCK, hash));
     }
 
-    // mmcoin: check pending sync-checkpoint
+    // mecash: check pending sync-checkpoint
     AcceptPendingSyncCheckpoint();
 
     return true;
@@ -2610,7 +2591,7 @@ bool ProcessBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, CDiskBl
     if (mapOrphanBlocks.count(hash))
         return state.Invalid(error("ProcessBlock() : already have block (orphan) %s", hash.ToString().c_str()));
 
-    // mmcoin: check proof-of-stake
+    // mecash: check proof-of-stake
     bool fDuplicateStakeOfBestBlock = false;
     if (pblock->IsProofOfStake())
     {
@@ -2632,7 +2613,7 @@ bool ProcessBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, CDiskBl
     if (!pblock->CheckBlock(state))
         return error("ProcessBlock() : CheckBlock FAILED");
 
-    // mmcoin: verify hash target and signature of coinstake tx
+    // mecash: verify hash target and signature of coinstake tx
     if (pblock->IsProofOfStake())
     {
         uint256 hashProofOfStake = 0;
@@ -2661,7 +2642,7 @@ bool ProcessBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, CDiskBl
         }
     }
 
-    // mmcoin: ask for pending sync-checkpoint if any
+    // mecash: ask for pending sync-checkpoint if any
     if (!IsInitialBlockDownload())
         AskForPendingSyncCheckpoint(pfrom);
 
@@ -2708,7 +2689,7 @@ bool ProcessBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, CDiskBl
         if (pfrom) {
             PruneOrphanBlocks();
             CBlock* pblock2 = new CBlock(*pblock);
-            // mmcoin: check proof-of-stake
+            // mecash: check proof-of-stake
             if (pblock2->IsProofOfStake())
             {
                 // Limited duplicity on stake: prevents block flood attack
@@ -2728,7 +2709,7 @@ bool ProcessBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, CDiskBl
 
             // Ask this guy to fill in what we're missing
             pfrom->PushGetBlocks(pindexBest, GetOrphanRoot(pblock2));
-            // mmcoin: getblocks may not obtain the ancestor block rejected
+            // mecash: getblocks may not obtain the ancestor block rejected
             // earlier by duplicate-stake check so we ask for it again directly
             if (!IsInitialBlockDownload())
                 pfrom->AskFor(CInv(MSG_BLOCK, WantedByOrphan(pblock2)));
@@ -2764,7 +2745,7 @@ bool ProcessBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, CDiskBl
 
     printf("ProcessBlock: ACCEPTED\n");
 
-    // mmcoin: if responsible for sync-checkpoint send it
+    // mecash: if responsible for sync-checkpoint send it
     if (pfrom && !CSyncCheckpoint::strMasterPrivKey.empty() &&
         (int)GetArg("-checkpointdepth", -1) >= 0)
         SendSyncCheckpoint(AutoSelectSyncCheckpoint());
@@ -2772,7 +2753,7 @@ bool ProcessBlock(CValidationState &state, CNode* pfrom, CBlock* pblock, CDiskBl
     return true;
 }
 
-// mmcoin: sign block
+// mecash: sign block
 bool CBlock::SignBlock(const CKeyStore& keystore)
 {
     vector<valtype> vSolutions;
@@ -2795,7 +2776,7 @@ bool CBlock::SignBlock(const CKeyStore& keystore)
     return false;
 }
 
-// mmcoin: check block signature
+// mecash: check block signature
 bool CBlock::CheckBlockSignature() const
 {
     if (GetHash() == hashGenesisBlock)
@@ -2820,7 +2801,7 @@ bool CBlock::CheckBlockSignature() const
     return false;
 }
 
-// mmcoin: entropy bit for stake modifier if chosen by modifier
+// mecash: entropy bit for stake modifier if chosen by modifier
 unsigned int CBlock::GetStakeEntropyBit() const
 {
     unsigned int nEntropyBit = 0;
@@ -3095,7 +3076,7 @@ bool static LoadBlockIndexDB()
     {
         CBlockIndex* pindex = item.second;
         pindex->nChainTrust = (pindex->pprev ? pindex->pprev->nChainTrust : 0) + pindex->GetBlockTrust().getuint256();
-        // mmcoin: calculate stake modifier checksum
+        // mecash: calculate stake modifier checksum
         pindex->nStakeModifierChecksum = GetStakeModifierChecksum(pindex);
         if (!CheckStakeModifierCheckpoints(pindex->nHeight, pindex->nStakeModifierChecksum))
             return error("LoadBlockIndexDB() : Failed stake modifier checkpoint height=%d, modifier=0x%016" PRI64x, pindex->nHeight, pindex->nStakeModifier);
@@ -3111,7 +3092,7 @@ bool static LoadBlockIndexDB()
     if (pblocktree->ReadBlockFileInfo(nLastBlockFile, infoLastBlockFile))
         printf("LoadBlockIndexDB(): last block file info: %s\n", infoLastBlockFile.ToString().c_str());
 
-    // mmcoin: load hashSyncCheckpoint
+    // mecash: load hashSyncCheckpoint
     if (!pblocktree->ReadSyncCheckpoint(hashSyncCheckpoint))
     {
         printf("LoadBlockIndexDB(): synchronized checkpoint not read\n");
@@ -3283,7 +3264,7 @@ bool InitBlockIndex() {
         return true;
 
     // Use the provided setting for -txindex in the new database
-    fTxIndex = true; // mmcoin: txindex is always enabled
+    fTxIndex = true; // mecash: txindex is always enabled
     pblocktree->WriteFlag("txindex", fTxIndex);
     printf("Initializing databases...\n");
 
@@ -3297,9 +3278,9 @@ bool InitBlockIndex() {
         //   vMerkleTree: 4a5e1e
 
         // Genesis block
-        const char* pszTimestamp = "Genesis of meconcash!! 2018.04.03 HAHAHAHAHAHAHAHAHAHAHA";
+        const char* pszTimestamp = "2018/05/29 White House Moves Ahead With Tough Trade Measures on China";
         CTransaction txNew;
-        txNew.nTime = 1524530325;
+        txNew.nTime = 1527602263;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CBigNum(9999) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
@@ -3309,14 +3290,14 @@ bool InitBlockIndex() {
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1524530325;
+        block.nTime    = 1527602263;
         block.nBits    = bnProofOfWorkLimit.GetCompact();
-        block.nNonce   = 5263;
+        block.nNonce   = 80326631;
 
         if (fTestNet)
         {
-            block.nTime    = 1524530325;
-            block.nNonce   = 5263;
+            block.nTime    = 1527602263;
+            block.nNonce   = 408558330;
         }
 
 #ifdef TESTING
@@ -3331,20 +3312,15 @@ bool InitBlockIndex() {
         }
 #endif
 
-        //printf("Peershares Genesis Block Found:\n");
-        //printf("genesis hash=%s\n", block.GetHash().ToString().c_str());
-        //printf("merkle root=%s\n", block.hashMerkleRoot.ToString().c_str());
-        //block.print();
-
         //// debug print
         uint256 hash = block.GetHash();
         printf("%s\n", hash.ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x7c2d3a951fe8c9a473c2f56e026e8357637d372de8f6e22c6f301da455d3ab66"));
+        assert(block.hashMerkleRoot == uint256("0x0a1905b18c3778db5a56df715447665ba69036c33202afb6522f79ccd71575d5"));
         block.print();
         assert(hash == hashGenesisBlock);
-        // mmcoin: check genesis block
+        // mecash: check genesis block
         {
             CValidationState state;
             assert(block.CheckBlock(state));
@@ -3365,12 +3341,12 @@ bool InitBlockIndex() {
             return error("LoadBlockIndex() : failed to initialize block database: %s", e.what());
         }
 
-        // mmcoin: initialize synchronized checkpoint
+        // mecash: initialize synchronized checkpoint
         if (!WriteSyncCheckpoint(hashGenesisBlock))
             return error("LoadBlockIndex() : failed to init sync checkpoint");
     }
 
-    // mmcoin: if checkpoint master key changed must reset sync-checkpoint
+    // mecash: if checkpoint master key changed must reset sync-checkpoint
     if (!CheckCheckpointPubKey())
         return error("LoadBlockIndex() : failed to reset checkpoint master pubkey");
 
@@ -3555,14 +3531,14 @@ string GetWarnings(string strFor)
     if (!CLIENT_VERSION_IS_RELEASE)
         strStatusBar = _("This is a pre-release test build - use at your own risk - do not use for mining or merchant applications");
 
-    // mmcoin: wallet lock warning for minting
+    // mecash: wallet lock warning for minting
     if (strMintWarning != "")
     {
         nPriority = 0;
         strStatusBar = strMintWarning;
     }
 
-    // mmcoin: checkpoint warning
+    // mecash: checkpoint warning
     // should not enter safe mode for longer invalid chain
     if (strCheckpointWarning != "")
     {
@@ -3577,7 +3553,7 @@ string GetWarnings(string strFor)
         strStatusBar = strMiscWarning;
     }
 
-    // mmcoin: if detected invalid checkpoint enter safe mode
+    // mecash: if detected invalid checkpoint enter safe mode
     if (hashInvalidCheckpoint != 0)
     {
         nPriority = 3000;
@@ -3595,7 +3571,7 @@ string GetWarnings(string strFor)
                 nPriority = alert.nPriority;
                 strStatusBar = alert.strStatusBar;
                 if (nPriority > 1000)
-                    strRPC = strStatusBar;  // mmcoin: safe mode for high alert
+                    strRPC = strStatusBar;  // mecash: safe mode for high alert
             }
         }
     }
@@ -3662,7 +3638,7 @@ void static ProcessGetData(CNode* pfrom)
             boost::this_thread::interruption_point();
             it++;
 
-            // mmcoin: relay memory may contain blocks too
+            // mecash: relay memory may contain blocks too
             bool found = false;
 
             if (inv.type == MSG_BLOCK || inv.type == MSG_FILTERED_BLOCK)
@@ -3704,8 +3680,8 @@ void static ProcessGetData(CNode* pfrom)
                         // Bypass PushInventory, this must send even if redundant,
                         // and we want it right after the last block so they don't
                         // wait for other stuff first.
-                        // mmcoin: send latest proof-of-work block to allow the
-                        // download node to accept as orphan (proof-of-stake
+                        // mecash: send latest proof-of-work block to allow the
+                        // download node to accept as orphan (proof-of-stake 
                         // block might be rejected by stake connection check)
                         vector<CInv> vInv;
                         vInv.push_back(CInv(MSG_BLOCK, GetLastBlockIndex(pindexBest, false)->GetBlockHash()));
@@ -3834,7 +3810,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             return true;
         }
 
-        // mmcoin: record my external IP reported by peer
+        // mecash: record my external IP reported by peer
         if (addrFrom.IsRoutable() && addrMe.IsRoutable())
             addrSeenByPeer = addrMe;
 
@@ -3882,7 +3858,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
                 item.second.RelayTo(pfrom);
         }
 
-        // mmcoin: relay sync-checkpoint
+        // mecash: relay sync-checkpoint
         {
             LOCK(cs_hashSyncCheckpoint);
             if (!checkpointMessage.IsNull())
@@ -3895,7 +3871,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
 
         cPeerBlockCounts.input(pfrom->nStartingHeight);
 
-        // mmcoin: ask for pending sync-checkpoint if any
+        // mecash: ask for pending sync-checkpoint if any
         if (!IsInitialBlockDownload())
             AskForPendingSyncCheckpoint(pfrom);
     }
@@ -4071,7 +4047,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv)
             if (pindex->GetBlockHash() == hashStop)
             {
                 printf("  getblocks stopping at %d %s\n", pindex->nHeight, pindex->GetBlockHash().ToString().c_str());
-                // mmcoin: tell downloading node about the latest block if it's
+                // mecash: tell downloading node about the latest block if it's
                 // without risk being rejected due to stake connection check
                 if (hashStop != hashBestChain && pindex->GetBlockTime() + nStakeMinAge > pindexBest->GetBlockTime())
                     pfrom->PushInventory(CInv(MSG_BLOCK, hashBestChain));
@@ -4882,7 +4858,7 @@ CBlockTemplate* CreateNewBlock(CReserveKey& reservekey, CWallet* pwallet, bool f
     unsigned int nBlockMinSize = GetArg("-blockminsize", 0);
     nBlockMinSize = std::min(nBlockMaxSize, nBlockMinSize);
 
-    // mmcoin: if coinstake available add coinstake tx
+    // mecash: if coinstake available add coinstake tx
     static int64 nLastCoinStakeSearchTime = GetAdjustedTime();  // only initialized at startup
     CBlockIndex* pindexPrev = pindexBest;
 
@@ -5034,7 +5010,7 @@ CBlockTemplate* CreateNewBlock(CReserveKey& reservekey, CWallet* pwallet, bool f
             if (nBlockSigOps + nTxSigOps >= MAX_BLOCK_SIGOPS)
                 continue;
 
-            // mmcoin: timestamp limit
+            // mecash: timestamp limit
             if (tx.nTime > GetAdjustedTime() || (pblock->IsProofOfStake() && tx.nTime > pblock->vtx[1].nTime))
                 continue;
 
@@ -5056,7 +5032,7 @@ CBlockTemplate* CreateNewBlock(CReserveKey& reservekey, CWallet* pwallet, bool f
                 continue;
 
             int64 nTxFees = tx.GetValueIn(view)-tx.GetValueOut();
-            // mmcoin: simplify transaction fee - allow free = false
+            // mecash: simplify transaction fee - allow free = false
             int64 nMinFee = tx.GetMinFee(nBlockSize, false, GMF_BLOCK);
             if (nTxFees < nMinFee)
                 continue;
@@ -5253,7 +5229,7 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
 {
     printf("CPUMiner started for proof-of-%s\n", fProofOfStake? "stake" : "work");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
-    RenameThread(fProofOfStake? "mmcoin-stake-minter" : "mmcoin-miner");
+    RenameThread(fProofOfStake? "mecash-stake-minter" : "mecash-miner");
 
     // Each thread has its own key and counter
     CReserveKey reservekey(pwallet);
@@ -5299,7 +5275,7 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
 
         if (fProofOfStake)
         {
-            // mmcoin: if proof-of-stake block found then process block
+            // mecash: if proof-of-stake block found then process block
             if (pblock->IsProofOfStake())
             {
                 if (!pblock->SignBlock(*pwalletMain))
@@ -5308,7 +5284,7 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
                     continue;
                 }
                 strMintWarning = "";
-                printf("CPUMiner : proof-of-stake block found %s\n", pblock->GetHash().ToString().c_str());
+                printf("CPUMiner : proof-of-stake block found %s\n", pblock->GetHash().ToString().c_str()); 
 #ifdef TESTING
                 SetThreadPriority(THREAD_PRIORITY_NORMAL);
                 bool fSuccess = CheckWork(pblock, *pwalletMain, reservekey);
@@ -5467,7 +5443,7 @@ void GenerateBitcoins(bool fGenerate, CWallet* pwallet)
 #endif
 }
 
-// mmcoin: stake minter thread
+// mecash: stake minter thread
 void static ThreadStakeMinter(void* parg)
 {
     printf("ThreadStakeMinter started\n");
@@ -5486,10 +5462,10 @@ void static ThreadStakeMinter(void* parg)
     printf("ThreadStakeMinter exiting\n");
 }
 
-// mmcoin: stake minter
+// mecash: stake minter
 void MintStake(boost::thread_group& threadGroup, CWallet* pwallet)
 {
-    // mmcoin: mint proof-of-stake blocks in the background
+    // mecash: mint proof-of-stake blocks in the background
     threadGroup.create_thread(boost::bind(&ThreadStakeMinter, pwallet));
 }
 #endif // DISABLE_MINING
