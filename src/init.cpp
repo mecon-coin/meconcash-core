@@ -559,6 +559,8 @@ bool AppInit2(boost::thread_group& threadGroup)
         configFile << "addnode=52.231.158.58\n";
         configFile << "addnode=51.231.155.139\n";
         configFile << "addnode=51.231.158.111\n";
+        configFile << "addnode=52.231.154.91\n";
+        configFile << "banscore=3\n";
         configFile << "maxconnections=4";
         if (configFile) fclose(file);
     }
