@@ -25,10 +25,10 @@ static unsigned int nMessageStartTestSwitchTime = 1346200000;
 
 // Meconcash message start (switch from Bitcoin's in v0.2)
 static unsigned char pchMessageStartBitcoin[4] = { 0xf9, 0xbe, 0xb4, 0xd9 };
-static unsigned char pchMessageStartMeconcash[4] = { 0xe4, 0xf3, 0xf2, 0xe6 };
+static unsigned char pchMessageStartMeconcash[4] = { 0xe5, 0xf4, 0xf2, 0xe6 };
 static unsigned int nMessageStartSwitchTime = 1347300000;
 
-unsigned char pchMessageStart[4] = { 0xe4, 0xf3, 0xf2, 0xe6 };
+unsigned char pchMessageStart[4] = { 0xe5, 0xf4, 0xf2, 0xe6 };
 
 void GetMessageStart(unsigned char pchMessageStart[], bool fPersistent)
 {
