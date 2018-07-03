@@ -1123,7 +1123,7 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
 
 int64 GetProofOfWorkReward(unsigned int nBits)
 {
-    int64 premine = 208000000 * COIN;
+    int64 premine = 220000000 * COIN;
     if (pindexBest == NULL || pindexBest->nMoneySupply < premine) {
         return 1000000 * COIN;
     } else if (pindexBest->nMoneySupply - premine < 50000000 * COIN) {
