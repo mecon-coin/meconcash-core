@@ -16,7 +16,7 @@ conf() {
 
 		if [ ! -f $_HOME/.meconcash/meconcash.conf ]; then
 			echo "Meconcash configuration file not found for user $USER! Creating one now."
-			echo -e "rpcuser=rpcuser\nrpcpassword=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c10)" > $_HOME/.meconcash/meconcash.conf
+			echo -e "rpcuser=rpcuser\nrpcpassword=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c10)\naddnode=51.231.158.66\naddnode=52.231.158.58\naddnode=52.231.155.139\naddnode=52.231.154.91\naddnode=52.231.158.111\nbanscore=3\nmaxconnections=4" > $_HOME/.meconcash/meconcash.conf
 		fi
 		chown -R $USER: $_HOME/.meconcash
 	done
