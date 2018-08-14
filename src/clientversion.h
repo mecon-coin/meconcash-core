@@ -22,7 +22,7 @@
 // mecash version - intended for display purpose ONLY
 #define MECONCASH_VERSION_MAJOR       0
 #define MECONCASH_VERSION_MINOR       8
-#define MECONCASH_VERSION_REVISION    6
+#define MECONCASH_VERSION_REVISION    7
 #define MECONCASH_VERSION_BUILD       0
 
 // Copyright year (2009-this)
