@@ -1211,7 +1211,7 @@ static const char *strMainNetDNSSeed[][2] = {
 };
 
 static const char *strTestNetDNSSeed[][2] = {
-    {"52.79.251.187", "13.209.3.248"},
+    {"tseedmeconcash", "tseed.meconcash.io"},
     {NULL, NULL}
 };
 
