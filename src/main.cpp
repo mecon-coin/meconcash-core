@@ -1127,7 +1127,7 @@ int64 GetProofOfWorkReward(unsigned int nBits)
     if (pindexBest == NULL || pindexBest->nMoneySupply < premine) {
         return 1000000 * COIN;
     } else if (pindexBest->nMoneySupply - premine < 50000000 * COIN) {
-        return IsProtocolV07(pindexBest) ? 0.01 * COIN : 1000 * COIN;
+        return IsProtocolV07(pindexBest) ? 0.001 * COIN : 1000 * COIN;
     }
 
     CBigNum bnSubsidyLimit = MAX_MINT_PROOF_OF_WORK;
@@ -1243,8 +1243,9 @@ unsigned int static GetNextTargetRequired(const CBlockIndex* pindexLast, bool fP
     if (pindexPrevPrev->pprev == NULL)
         return bnInitialHashTarget.GetCompact(); // second block
 
-    if (fTestNet ? pindexLast->nHeight == 100 : pindexLast->nHeight == 12500) {
-        bnProofOfWorkLimit = CBigNum(~uint256(0) >> 28);
+    int resetHeight = fTestNet ? 100 : 12500;
+    if (pindexLast->nHeight == resetHeight) {
+        return bnInitialHashTarget.GetCompact();
     }
 
     int64 nActualSpacing = pindexPrev->GetBlockTime() - pindexPrevPrev->GetBlockTime();
