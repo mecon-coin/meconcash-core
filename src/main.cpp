@@ -1243,8 +1243,8 @@ unsigned int static GetNextTargetRequired(const CBlockIndex* pindexLast, bool fP
     if (pindexPrevPrev->pprev == NULL)
         return bnInitialHashTarget.GetCompact(); // second block
 
-    if (IsProtocolV07(pindexPrev) && bnProofOfWorkLimit > CBigNum(~uint256(0) >> 30)) {
-        bnProofOfWorkLimit = CBigNum(~uint256(0) >> 30)
+    if (pindexLast->nHeight == 12500) {
+        bnProofOfWorkLimit = CBigNum(~uint256(0) >> 28);
     }
 
     int64 nActualSpacing = pindexPrev->GetBlockTime() - pindexPrevPrev->GetBlockTime();
