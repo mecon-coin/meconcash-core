@@ -81,7 +81,7 @@ bool IsProtocolV06(const CBlockIndex* pindexPrev)
 
 bool IsProtocolV07(const CBlockIndex* pindexPrev)
 {
-    return pindexPrev->nTime >= (fTestNet? nProtocolV07TestSwitchTime : nProtocolV07SwitchTime)
+    return pindexPrev->nTime >= (fTestNet? nProtocolV07TestSwitchTime : nProtocolV07SwitchTime);
 }
 
 // Get the last stake modifier and its generation time from a given block
