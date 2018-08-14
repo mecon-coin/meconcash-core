@@ -1243,7 +1243,7 @@ unsigned int static GetNextTargetRequired(const CBlockIndex* pindexLast, bool fP
     if (pindexPrevPrev->pprev == NULL)
         return bnInitialHashTarget.GetCompact(); // second block
 
-    if (pindexLast->nHeight == 12500) {
+    if (fTestNet ? pindexLast->nHeight == 100 : pindexLast->nHeight == 12500) {
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 28);
     }
 
