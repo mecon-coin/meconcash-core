@@ -1243,7 +1243,7 @@ unsigned int static GetNextTargetRequired(const CBlockIndex* pindexLast, bool fP
     if (pindexPrevPrev->pprev == NULL)
         return bnInitialHashTarget.GetCompact(); // second block
 
-    int resetHeight = fTestNet ? 100 : 12500;
+    int resetHeight = fTestNet ? 600 : 12500;
     if (pindexLast->nHeight == resetHeight) {
         return bnInitialHashTarget.GetCompact();
     }
