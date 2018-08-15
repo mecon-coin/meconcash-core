@@ -1127,7 +1127,7 @@ int64 GetProofOfWorkReward(unsigned int nBits)
     if (pindexBest == NULL || pindexBest->nMoneySupply < premine) {
         return 1000000 * COIN;
     } else if (pindexBest->nMoneySupply - premine < 50000000 * COIN) {
-        return IsProtocolV07(pindexBest) ? 0.001 * COIN : 1000 * COIN;
+        return IsProtocolV07(pindexBest) ? 0.01 * COIN : 1000 * COIN;
     }
 
     CBigNum bnSubsidyLimit = MAX_MINT_PROOF_OF_WORK;
