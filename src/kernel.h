@@ -28,6 +28,8 @@ bool IsProtocolV05(unsigned int nTimeTx);
 // Test against previous block index! (always available)
 bool IsProtocolV06(const CBlockIndex *pindexPrev);
 
+bool IsProtocolV07(const CBlockIndex *pindexPrev);
+
 // Compute the hash modifier for proof-of-stake
 bool ComputeNextStakeModifier(const CBlockIndex* pindexCurrent, uint64& nStakeModifier, bool& fGeneratedStakeModifier);
 

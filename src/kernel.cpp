@@ -24,6 +24,9 @@ unsigned int nProtocolV05TestSwitchTime = 1447700000;
 const unsigned int nProtocolV06SwitchTime     = 1513050000; // Tue 12 Dec 03:40:00 UTC 2017
 const unsigned int nProtocolV06TestSwitchTime = 1508198400; // Tue 17 Oct 00:00:00 UTC 2017
 
+const int nProtocolV07SwitchBlockHeight     = 12950; // Tuesday, August 14, 2018 9:00:00 AM GMT+09:00
+const int nProtocolV07TestSwitchBlockHeight = 10; // Tuesday, August 14, 2018 9:00:00 AM GMT+09:00
+
 
 // Modifier interval: time to elapse before new modifier is computed
 // Set to 6-hour for production network and 20-minute for test network
@@ -74,6 +77,11 @@ bool IsProtocolV06(const CBlockIndex* pindexPrev)
     return true;
 
   return false;
+}
+
+bool IsProtocolV07(const CBlockIndex* pindexPrev)
+{
+    return pindexPrev->nHeight >= (fTestNet? nProtocolV07TestSwitchBlockHeight : nProtocolV07SwitchBlockHeight);
 }
 
 // Get the last stake modifier and its generation time from a given block
