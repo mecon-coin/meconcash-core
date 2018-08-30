@@ -15,10 +15,10 @@
 #include <string>
 #include "uint256.h"
 
-#define MECASH_PORT  29901
-#define RPC_PORT     29902
-#define TESTNET_PORT 29903
-#define TESTNET_RPC_PORT 29904
+#define MECASH_PORT  39901
+#define RPC_PORT     39902
+#define TESTNET_PORT 39903
+#define TESTNET_RPC_PORT 39904
 
 extern bool fTestNet;
 extern unsigned char pchMessageStart[4];

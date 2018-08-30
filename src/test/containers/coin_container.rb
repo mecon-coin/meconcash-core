@@ -36,7 +36,7 @@ class CoinContainer
     connect_cmd = (options[:link_with_connect] ? "-connect" : "-addnode")
     connects = links.map do |linked_name, alias_name|
       upname = alias_name.upcase
-      "#{connect_cmd}=$#{upname}_PORT_29903_TCP_ADDR:$#{upname}_PORT_29903_TCP_PORT"
+      "#{connect_cmd}=$#{upname}_PORT_39903_TCP_ADDR:$#{upname}_PORT_39903_TCP_PORT"
     end
 
     default_args = {
@@ -95,8 +95,8 @@ class CoinContainer
       'Tty' => true,
       'Cmd' => command,
       'ExposedPorts' => {
-        "29903/tcp" => {},
-        "29904/tcp" => {},
+        "39903/tcp" => {},
+        "39904/tcp" => {},
       },
       'name' => name,
     }
@@ -116,8 +116,8 @@ class CoinContainer
     node_container.start(
       'Binds' => ["#{File.expand_path('../../..', __FILE__)}:/code"],
       'PortBindings' => {
-        "29904/tcp" => [{}],
-        "29903/tcp" => [{}],
+        "39904/tcp" => [{}],
+        "39903/tcp" => [{}],
       },
       'Links' => links.map { |link_name, alias_name| "#{link_name}:#{alias_name}" },
     )
@@ -133,9 +133,9 @@ class CoinContainer
     if ports.nil?
       raise "Unable to get port. Usualy this means the daemon process failed to start."
     end
-    port = ports["29904/tcp"].first["HostPort"].to_i
+    port = ports["39904/tcp"].first["HostPort"].to_i
     @rpc_port = port
-    @port= ports["29903/tcp"].first["HostPort"].to_i
+    @port= ports["39903/tcp"].first["HostPort"].to_i
   end
 
   def initialize(options = {})
