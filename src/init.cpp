@@ -253,6 +253,7 @@ std::string HelpMessage(HelpMessageMode hmm)
         "  -checkblocks=<n>       " + _("How many blocks to check at startup (default: 288, 0 = all)") + "\n" +
         "  -checklevel=<n>        " + _("How thorough the block verification is (0-4, default: 3)") + "\n" +
         "  -txindex               " + _("Maintain a full transaction index (default: 0)") + "\n" +
+        "  -addrindex             " + _("Maintain a full address index, used by the searchrawtransactions rpc call (default: 0)") + "\n" +
         "  -loadblock=<file>      " + _("Imports blocks from external blk000??.dat file") + "\n" +
         "  -reindex               " + _("Rebuild block chain index from current blk000??.dat files") + "\n" +
         "  -par=<n>               " + _("Set the number of script verification threads (up to 16, 0 = auto, <0 = leave that many cores free, default: 0)") + "\n" +
@@ -725,7 +726,7 @@ bool AppInit2(boost::thread_group& threadGroup)
     if (nTotalCache < (1 << 22))
         nTotalCache = (1 << 22); // total cache cannot be less than 4 MiB
     size_t nBlockTreeDBCache = nTotalCache / 8;
-    if (nBlockTreeDBCache > (1 << 21) && !GetBoolArg("-txindex", false))
+    if (nBlockTreeDBCache > (1 << 21) && !GetBoolArg("-txindex", false) && !GetBoolArg("-addrindex", false))
         nBlockTreeDBCache = (1 << 21); // block tree db cache shouldn't be larger than 2 MiB
     nTotalCache -= nBlockTreeDBCache;
     size_t nCoinDBCache = nTotalCache / 2; // use half of the remaining cache for coindb cache
@@ -762,6 +763,12 @@ bool AppInit2(boost::thread_group& threadGroup)
                 // Initialize the block index (no-op if non-empty database was already loaded)
                 if (!InitBlockIndex()) {
                     strLoadError = _("Error initializing block database");
+                    break;
+                }
+
+                // Check for changed -addrindex state
+                if (fAddrIndex != GetBoolArg("-addrindex", false)) {
+                    strLoadError = _("You need to rebuild the database using -reindex to change -addrindex");
                     break;
                 }
 

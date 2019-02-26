@@ -123,6 +123,7 @@ extern bool fReindex;
 extern bool fBenchmark;
 extern int nScriptCheckThreads;
 extern bool fTxIndex;
+extern bool fAddrIndex;
 extern unsigned int nCoinCacheSize;
 #ifdef TESTING
 extern uint256 hashSingleStakeBlock;
@@ -288,6 +289,48 @@ struct CDiskTxPos : public CDiskBlockPos
     void SetNull() {
         CDiskBlockPos::SetNull();
         nTxOffset = 0;
+    }
+
+    friend bool operator<(const CDiskTxPos &a, const CDiskTxPos &b) {
+        return  (a.nFile < b.nFile || (
+                (a.nFile == b.nFile) && (a.nPos < b.nPos || (
+                        (a.nPos == b.nPos) && (a.nTxOffset < b.nTxOffset)))));
+    }
+};
+
+struct CExtDiskTxPos : public CDiskTxPos
+{
+    unsigned int nHeight;
+
+    IMPLEMENT_SERIALIZE(
+        READWRITE(*(CDiskBlockPos*)this);
+        READWRITE(VARINT(nTxOffset));
+    )
+
+    CExtDiskTxPos(const CDiskTxPos &pos, int nHeightIn) : CDiskTxPos(pos), nHeight(nHeightIn) {
+    }
+
+    CExtDiskTxPos() {
+        SetNull();
+    }
+
+    void SetNull() {
+        CDiskTxPos::SetNull();
+        nHeight = 0;
+    }
+
+    friend bool operator==(const CExtDiskTxPos &a, const CExtDiskTxPos &b) {
+        return (a.nHeight == b.nHeight && a.nFile == b.nFile && a.nPos == b.nPos && a.nTxOffset == b.nTxOffset);
+    }
+
+    friend bool operator!=(const CExtDiskTxPos &a, const CExtDiskTxPos &b) {
+        return !(a == b);
+    }
+
+    friend bool operator<(const CExtDiskTxPos &a, const CExtDiskTxPos &b) {
+        if (a.nHeight < b.nHeight) return true;
+        if (a.nHeight > b.nHeight) return false;
+        return ((const CDiskTxPos)a < (const CDiskTxPos)b);
     }
 };
 
@@ -1649,6 +1692,11 @@ public:
         printf("\n");
     }
 
+    /** Functions for disk access for blocks */
+    bool ReadTransaction(CTransaction& tx, const CDiskTxPos &pos, uint256 &hashBlock);
+    bool FindTransactionsByDestination(const CTxDestination &dest, std::set<CExtDiskTxPos> &setpos);
+
+    /** Functions for validating blocks and updating the block tree */
 
     /** Undo the effects of this block (with given index) on the UTXO set represented by coins.
      *  In case pfClean is provided, operation will try to be tolerant about errors, and *pfClean
