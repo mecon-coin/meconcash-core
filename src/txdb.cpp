@@ -3,7 +3,6 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "arith_uint256.h"
 #include "txdb.h"
 #include "main.h"
 #include "hash.h"
@@ -185,7 +184,7 @@ bool CBlockTreeDB::ReadAddrIndex(uint160 addrid, std::vector<CExtDiskTxPos> &lis
         CHashWriter ss(SER_GETHASH, 0);
         ss << salt;
         ss << addrid;
-        lookupid = UintToArith256(ss.GetHash()).GetLow64();
+        lookupid = ss.GetHash().Get64();
     }
     CDataStream ssKeySet(SER_DISK, CLIENT_VERSION);
     ssKeySet << make_pair('a', lookupid);
@@ -217,7 +216,7 @@ bool CBlockTreeDB::AddAddrIndex(const std::vector<std::pair<uint160, CExtDiskTxP
         CHashWriter ss(SER_GETHASH, 0);
         ss << salt;
         ss << it->first;
-        batch.Write(make_pair(make_pair('a', UintToArith256(ss.GetHash()).GetLow64()), it->second), FLATDATA(foo));
+        batch.Write(make_pair(make_pair('a', ss.GetHash().Get64()), it->second), FLATDATA(foo));
     }
     return WriteBatch(batch, true);
 }
