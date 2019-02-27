@@ -5,6 +5,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "alert.h"
+#include "base58.h"
 #include "checkpoints.h"
 #include "db.h"
 #include "txdb.h"
@@ -1019,7 +1020,7 @@ bool ReadTransaction(CTransaction& tx, const CDiskTxPos &pos, uint256 &hashBlock
     CBlockHeader header;
     try {
         file >> header;
-        fseek(file.Get(), pos.nTxOffset, SEEK_CUR);
+        fseek(file, pos.nTxOffset, SEEK_CUR);
         file >> tx;
     } catch (std::exception &e) {
         return error("%s() : deserialize or I/O error", __PRETTY_FUNCTION__);
@@ -1961,7 +1962,7 @@ bool CBlock::ConnectBlock(CValidationState &state, CBlockIndex* pindex, CCoinsVi
 
     if (fAddrIndex)
         if (!pblocktree->AddAddrIndex(vPosAddrid))
-            return state.AbortNode(_("Failed to write address index"));
+            return state.Abort(_("Failed to write address index"));
 
     // add this block to the view's block chain
     assert(view.SetBestBlock(pindex));
