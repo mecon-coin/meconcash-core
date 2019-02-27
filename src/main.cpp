@@ -1034,12 +1034,12 @@ bool FindTransactionsByDestination(const CTxDestination &dest, std::set<CExtDisk
     const CKeyID *pkeyid = boost::get<CKeyID>(&dest);
     if (pkeyid)
         addrid = static_cast<uint160>(*pkeyid);
-    if (addrid.IsNull()) {
+    if (!addrid) {
         const CScriptID *pscriptid = boost::get<CScriptID>(&dest);
         if (pscriptid)
             addrid = static_cast<uint160>(*pscriptid);
     }
-    if (addrid.IsNull())
+    if (!addrid)
         return false;
 
     LOCK(cs_main);
