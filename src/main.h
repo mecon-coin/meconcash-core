@@ -1276,6 +1276,10 @@ public:
     }
 };
 
+/** Functions for disk access for blocks */
+bool ReadTransaction(CTransaction& tx, const CDiskTxPos &pos, uint256 &hashBlock);
+bool FindTransactionsByDestination(const CTxDestination &dest, std::set<CExtDiskTxPos> &setpos);
+
 /** A transaction with a merkle branch linking it to the block chain. */
 class CMerkleTx : public CTransaction
 {
@@ -1691,10 +1695,6 @@ public:
             printf("%s ", vMerkleTree[i].ToString().c_str());
         printf("\n");
     }
-
-    /** Functions for disk access for blocks */
-    bool ReadTransaction(CTransaction& tx, const CDiskTxPos &pos, uint256 &hashBlock);
-    bool FindTransactionsByDestination(const CTxDestination &dest, std::set<CExtDiskTxPos> &setpos);
 
     /** Functions for validating blocks and updating the block tree */
 
