@@ -490,6 +490,7 @@ static const CRPCCommand vRPCCommands[] =
     { "signrawtransaction",     &signrawtransaction,     false,     false },
     { "searchrawtransactions",  &searchrawtransactions,  false,     false },
     { "listallunspent",         &listallunspent,         false,     false },
+    { "getallbalance",          &getallbalance,          false,     false },
     { "sendrawtransaction",     &sendrawtransaction,     false,     false },
     { "gettxoutsetinfo",        &gettxoutsetinfo,        true,      false },
     { "gettxout",               &gettxout,               true,      false },
