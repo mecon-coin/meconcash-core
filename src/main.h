@@ -89,9 +89,12 @@ static const int64 nMaxClockDrift = 2 * 60 * 60;        // two hours
 extern CScript COINBASE_FLAGS;
 
 
+struct BlockHasher
+{
+    size_t operator()(const uint256& hash) const { return hash.GetCheapHash(); }
+};
 
-
-
+typedef boost::unordered_map<uint256, CBlockIndex*, BlockHasher> BlockMap;
 
 extern CCriticalSection cs_main;
 extern std::map<uint256, CBlockIndex*> mapBlockIndex;
