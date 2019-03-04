@@ -269,7 +269,7 @@ Value listallunspent(const Array& params, bool fHelp)
             int nHeight = 0;
             int64_t nTime = 0;
             
-            BlockMap::iterator mi = mapBlockIndex.find(hashBlock);
+            map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.find(hashBlock);
             if (mi != mapBlockIndex.end() && (*mi).second) {
                 CBlockIndex* pindex = (*mi).second;
                 if (chainActive.Contains(pindex)) {
