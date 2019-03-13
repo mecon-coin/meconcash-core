@@ -1,6 +1,6 @@
 #!/bin/bash -ev
 
-MXE_PATH=/usr/lib/mxe
+MXE_PATH=/opt/mxe
 
 CC=$MXE_PATH/usr/bin/i686-w64-mingw32.static-gcc \
 AR=$MXE_PATH/usr/bin/i686-w64-mingw32.static-ar \

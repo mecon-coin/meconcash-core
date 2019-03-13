@@ -1,6 +1,6 @@
 #!/bin/bash -ev
 
-MXE_PATH=/usr/lib/mxe
+MXE_PATH=/opt/mxe
 sed -i "s/WinIoCtl.h/winioctl.h/g" dbinc/win_db.h
 mkdir build_mxe
 cd build_mxe

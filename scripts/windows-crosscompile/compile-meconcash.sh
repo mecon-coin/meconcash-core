@@ -1,7 +1,7 @@
 #!/bin/bash -ev
 
 
-MXE_PATH=/usr/lib/mxe
+MXE_PATH=/opt/mxe
 export PATH=$MXE_PATH/usr/bin:$PATH
 
 
