@@ -176,6 +176,15 @@ Array RPCConvertValues(const std::string &strMethod, const std::vector<std::stri
     if (strMethod == "signrawtransaction"     && n > 1) ConvertTo<Array>(params[1], true);
     if (strMethod == "signrawtransaction"     && n > 2) ConvertTo<Array>(params[2], true);
     if (strMethod == "sendrawtransaction"     && n > 1) ConvertTo<bool>(params[1], true);
+    if (strMethod == "searchrawtransactions"  && n > 1) ConvertTo<boost::int64_t>(params[1]);
+    if (strMethod == "searchrawtransactions"  && n > 2) ConvertTo<boost::int64_t>(params[2]);
+    if (strMethod == "searchrawtransactions"  && n > 3) ConvertTo<boost::int64_t>(params[3]);
+    if (strMethod == "listallunspent"         && n > 1) ConvertTo<boost::int64_t>(params[3]);
+    if (strMethod == "listallunspent"         && n > 2) ConvertTo<boost::int64_t>(params[3]);
+    if (strMethod == "listallunspent"         && n > 3) ConvertTo<boost::int64_t>(params[3]);
+    if (strMethod == "listallunspent"         && n > 4) ConvertTo<boost::int64_t>(params[3]);
+    if (strMethod == "getallbalance"          && n > 1) ConvertTo<boost::int64_t>(params[3]);
+    if (strMethod == "getallbalance"          && n > 2) ConvertTo<boost::int64_t>(params[3]);
     if (strMethod == "gettxout"               && n > 1) ConvertTo<boost::int64_t>(params[1]);
     if (strMethod == "gettxout"               && n > 2) ConvertTo<bool>(params[2]);
     if (strMethod == "lockunspent"            && n > 0) ConvertTo<bool>(params[0]);
