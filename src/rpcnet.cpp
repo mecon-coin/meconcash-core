@@ -233,6 +233,7 @@ Value makekeypair(const Array& params, bool fHelp)
         return Value::null;
 
     Object result;
+    result.push_back(Pair("Address", CBitcoinAddress(key.GetPubKey().GetID()).ToString()));
     result.push_back(Pair("PublicKey", HexStr(key.GetPubKey().Raw())));
     bool fCompressed;
     CSecret vchSecret = key.GetSecret(fCompressed);
