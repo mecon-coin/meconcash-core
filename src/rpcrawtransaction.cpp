@@ -166,11 +166,12 @@ Value searchrawtransactions(const Array& params, bool fHelp)
     if (nCount < 0)
         nCount = 0;
 
-    std::set<CExtDiskTxPos>::const_iterator it = setpos.begin();
-    while (it != setpos.end() && nSkip--) it++;
+    std::set<CExtDiskTxPos>::const_iterator it = setpos.end();
+    while (it == setpos.end()) it--;
+    while (it != setpos.begin() && nSkip--) it--;
 
     Array result;
-    while (it != setpos.end() && nCount--) {
+    while (it != setpos.begin() && nCount--) {
         CTransaction tx;
         uint256 hashBlock;
         if (!ReadTransaction(tx, *it, hashBlock))
@@ -186,7 +187,7 @@ Value searchrawtransactions(const Array& params, bool fHelp)
         } else {
             result.push_back(strHex);
         }
-        it++;
+        it--;
     }
     return result;
 }
