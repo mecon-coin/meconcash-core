@@ -69,7 +69,7 @@ using namespace std;
 
 
 // mecash: sync-checkpoint master key
-const std::string CSyncCheckpoint::strMainPubKey = "04c0c707c28533fd5c9f79d2d3a2d80dff259ad8f915241cd14608fb9bc07c74830efe8438f2b272a866b4af5e0c2cc2a9909972aefbd976937e39f46bb38c277c";
+const std::string CSyncCheckpoint::strMainPubKey = "04be9cc3214503a0c017f423db76bf745a8c73812c0d9a71edcdd0e05d1934262f37f12d2cde003cb1bb39e7e6b8aac9fad8052a8820f5ab673a6e655e661db248";
 const std::string CSyncCheckpoint::strTestPubKey = "0400c195be8d5194007b3f02249f785a51505776bd8f43cc6d49206163e08a63ad9009c814966921c361b14949c51e281edc9347e7ce0e8c57019df1313a6cac7b";
 std::string CSyncCheckpoint::strMasterPrivKey = "";
 
