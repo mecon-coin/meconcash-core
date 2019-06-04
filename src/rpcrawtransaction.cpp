@@ -167,7 +167,7 @@ Value searchrawtransactions(const Array& params, bool fHelp)
         nCount = 0;
 
     std::set<CExtDiskTxPos>::const_iterator it = setpos.end();
-    while (it == setpos.end()) it--;
+    while (it != setpos.begin() && it == setpos.end()) it--;
     while (it != setpos.begin() && nSkip--) it--;
 
     Array result;
