@@ -171,7 +171,7 @@ Value searchrawtransactions(const Array& params, bool fHelp)
     while (it != setpos.begin() && nSkip--) it--;
 
     Array result;
-    while (it != setpos.begin() && nCount--) {
+    do {
         CTransaction tx;
         uint256 hashBlock;
         if (!ReadTransaction(tx, *it, hashBlock))
@@ -187,8 +187,11 @@ Value searchrawtransactions(const Array& params, bool fHelp)
         } else {
             result.push_back(strHex);
         }
+        if (it == setpos.begin()) break;
         it--;
     }
+    while (it != setpos.begin() && nCount--);
+
     return result;
 }
 
