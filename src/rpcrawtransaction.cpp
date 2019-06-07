@@ -171,26 +171,27 @@ Value searchrawtransactions(const Array& params, bool fHelp)
     while (it != setpos.begin() && nSkip--) it--;
 
     Array result;
-    do {
-        CTransaction tx;
-        uint256 hashBlock;
-        if (!ReadTransaction(tx, *it, hashBlock))
-            throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Cannot read transaction from disk");
-        CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
-        ssTx << tx;
-        string strHex = HexStr(ssTx.begin(), ssTx.end());
-        if (fVerbose) {
-            Object object;
-            TxToJSON(tx, hashBlock, object);
-            object.push_back(Pair("hex", strHex));
-            result.push_back(object);
-        } else {
-            result.push_back(strHex);
-        }
-        if (it == setpos.begin()) break;
-        it--;
+    if (setpos.size() > 0) {
+        do {
+            CTransaction tx;
+            uint256 hashBlock;
+            if (!ReadTransaction(tx, *it, hashBlock))
+                throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Cannot read transaction from disk");
+            CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
+            ssTx << tx;
+            string strHex = HexStr(ssTx.begin(), ssTx.end());
+            if (fVerbose) {
+                Object object;
+                TxToJSON(tx, hashBlock, object);
+                object.push_back(Pair("hex", strHex));
+                result.push_back(object);
+            } else {
+                result.push_back(strHex);
+            }
+            if (it == setpos.begin()) break;
+            it--;
+        } while (it != setpos.begin() && nCount--);
     }
-    while (it != setpos.begin() && nCount--);
 
     return result;
 }
