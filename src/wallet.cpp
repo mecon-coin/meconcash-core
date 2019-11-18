@@ -1294,7 +1294,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend,
                     // coin control: send change to custom address
                     if (coinControl && !boost::get<CNoDestination>(&coinControl->destChange))
                         scriptChange.SetDestination(coinControl->destChange);
-                    else if (!GetBoolArg("-avatar")) // mecash: not avatar mode; nu: avatar mode enabled by default only on Share wallet to avoid change being sent to hidden address
+                    else if (GetBoolArg("-noavatar")) // mecash: not avatar mode; nu: avatar mode enabled by default only on Share wallet to avoid change being sent to hidden address
                     {
                         // Note: We use a new key here to keep it from being obvious which side is the change.
                         //  The drawback is that by not reusing a previous key, the change may be lost if a
