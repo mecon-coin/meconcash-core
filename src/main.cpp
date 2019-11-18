@@ -5334,7 +5334,7 @@ void BitcoinMiner(CWallet *pwallet, bool fProofOfStake)
     string strMintBlockMessage = _("Info: Minting suspended due to block creation failure.");
 
     try { ploop {
-        if (GetBoolArg("-nominting"))
+        if (!GetBoolArg("-yesminting"))
         {
             strMintWarning = strMintDisabledMessage;
             return;
