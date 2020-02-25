@@ -550,6 +550,22 @@ bool AppInit2(boost::thread_group& threadGroup)
 
     uiInterface.InitMessage(_("Verifying wallet..."));
 
+    if (!filesystem::exists(GetDataDir() / "meconcash.conf"))
+    {
+        boost::filesystem::path pathConfigFile = GetDataDir() / "meconcash.conf";
+        FILE* configFile = fopen(pathConfigFile.string().c_str(), "a"); // empty lock file; created if it doesn't exist.
+        configFile << "rpcuser=username\n";
+        configFile << "rpcpassword=rpcpassword\n";
+        configFile << "addnode=51.231.158.66\n";
+        configFile << "addnode=52.231.158.58\n";
+        configFile << "addnode=51.231.155.139\n";
+        configFile << "addnode=51.231.158.111\n";
+        configFile << "addnode=52.231.154.91\n";
+        configFile << "banscore=3\n";
+        configFile << "maxconnections=4";
+        if (configFile) fclose(file);
+    }
+
     if (!bitdb.Open(GetDataDir()))
     {
         // try moving the database env out of the way
